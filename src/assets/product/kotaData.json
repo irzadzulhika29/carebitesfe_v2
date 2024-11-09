@@ -1,0 +1,52 @@
+{
+  "Surabaya": {
+    "Sukolilo": ["Keputih", "Gebang Putih", "Medokan Semampir", "Semolowaru"],
+    "Rungkut": ["Kali Rungkut", "Rungkut Kidul", "Penjaringan Sari", "Wonorejo"],
+    "Wonokromo": ["Jagir", "Ngagel", "Sawunggaling", "Wonokromo"]
+  },
+  "Malang": {
+    "Klojen": ["Bareng", "Samaan", "Kauman", "Kasin"],
+    "Blimbing": ["Arjosari", "Blimbing", "Purwodadi", "Pandanwangi"],
+    "Lowokwaru": ["Tunggulwulung", "Lowokwaru", "Mojolangu", "Tasikmadu", "Ketawanggede"]
+  },
+  "Sidoarjo": {
+    "Waru": ["Pepelegi", "Kepuhkiriman", "Wadungasri", "Medaokan Ayu"],
+    "Taman": ["Taman", "Kebonsari", "Ngelom", "Sepanjang"],
+    "Candi": ["Candi", "Geluran", "Sepande", "Klurak"]
+  },
+  "Gresik": {
+    "Manyar": ["Manyar Sidomukti", "Manyar Sidorukun", "Roomo", "Tlogopatut"],
+    "Kebomas": ["Ngargosari", "Sidomukti", "Karangturi", "Gapurosukolilo"],
+    "Driyorejo": ["Driyorejo", "Krikilan", "Sumput", "Tenaru"]
+  },
+  "Jember": {
+    "Patrang": ["Baratan", "Jember Kidul", "Kranjingan", "Patrang"],
+    "Sumbersari": ["Tegal Besar", "Karangrejo", "Jember Lor", "Sumbersari"],
+    "Kaliwates": ["Mangli", "Kaliwates", "Rambipuji", "Tegal Gede"]
+  },
+  "Banyuwangi": {
+    "Giri": ["Giri", "Penataban", "Blimbingsari", "Pakis"],
+    "Kalipuro": ["Ketapang", "Bulusan", "Kalipuro", "Banyuwangi"],
+    "Rogojampi": ["Gladak", "Gladag", "Karangbendo", "Rogojampi"]
+  },
+  "Madiun": {
+    "Manguharjo": ["Nambangan Lor", "Madiun Lor", "Patihan", "Oro-oro Ombo"],
+    "Kartoharjo": ["Tawangrejo", "Kanigoro", "Kelun", "Klegen"],
+    "Taman": ["Banjarejo", "Josenan", "Taman", "Manisrejo"]
+  },
+  "Kediri": {
+    "Mojoroto": ["Campurejo", "Banaran", "Bawang", "Tamanan"],
+    "Pesantren": ["Pesantren", "Ngadirejo", "Bawang", "Betet"],
+    "Kota": ["Balowerti", "Pocanan", "Dandangan", "Setonogedong"]
+  },
+  "Probolinggo": {
+    "Kanigaran": ["Kanigaran", "Jati", "Panggungrejo", "Sukabumi"],
+    "Mayangan": ["Mayangan", "Wiroborang", "Mangunharjo", "Triwung"],
+    "Kademangan": ["Ketapang", "Sumbertaman", "Kademangan", "Pilang"]
+  },
+  "Pasuruan": {
+    "Purworejo": ["Bugul Lor", "Purworejo", "Karangketug", "Gadingrejo"],
+    "Panggungrejo": ["Bangilan", "Trajeng", "Tambakrejo", "Panggung"],
+    "Gadingrejo": ["Kebonsari", "Pohjentrek", "Krapyakrejo", "Petahunan"]
+  }
+}
