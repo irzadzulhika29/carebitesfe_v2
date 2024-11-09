@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar";
 import ProductForm from "../../components/dashboard/sharemeals/ProductForm";
 import PickupForm from "../../components/dashboard/sharemeals/PickupForm";
 import { saveAs } from "file-saver";
-import kotaData from "../../assets/product/kotaData.json"; // Import JSON
+import kotaData from "../../assets/sharemeals/kotaData.json"; // Import JSON
 
 const ShareMeals = () => {
   const [productName, setProductName] = useState("");
@@ -64,7 +64,7 @@ const ShareMeals = () => {
         <div className="flex-grow">
           <Navbar />
           <h1 className="mt-5 mx-10 text-2xl font-bold">Share Meals</h1>
-          <div className="mt-5 mx-10 flex flex-col gap-5">
+          <div className="mt-5 mx-10 flex min-h-screen flex-col gap-5">
             <ProductForm
               productName={productName}
               setProductName={setProductName}
@@ -100,7 +100,7 @@ const ShareMeals = () => {
               kotaData={kotaData}
             />
             <button
-              className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mx-10"
+              className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4  mb-5"
               onClick={handleDownloadJson}
             >
               Unduh JSON
