@@ -14,7 +14,9 @@ const NavbarLanding = () => {
 
                 {/* Menu Items */}
                 <div className="flex space-x-6">
-                    <a href="#" className="text-black font-semibold hover:text-[#45c517]">Home</a>
+                    <Link to="/">
+                        <a href="#" className="text-black font-semibold hover:text-[#45c517]">Home</a>
+                    </Link>
                     <a href="#" className="text-gray-600 hover:text-[#45c517]">Course</a>
                     <a href="#" className="text-gray-600 hover:text-[#45c517]">About Us</a>
                     <a href="#" className="text-gray-600 hover:text-[#45c517]">Article</a>
@@ -29,7 +31,7 @@ const NavbarLanding = () => {
                         </button>
                     </Link>
                     <Link to="/regist">
-                        <button className="px-4 py-2 bg-[#45c517] text-white rounded hover:bg-green-500">
+                        <button className="px-4 py-2 bg-[#45c517] text-white rounded hover:bg-[#3ca315]">
                             Register
                         </button>
                     </Link>

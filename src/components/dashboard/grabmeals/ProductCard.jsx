@@ -18,7 +18,8 @@ const ProductCard = ({ product }) => {
                         />
                         <h1 className="font-bold">{product.productName}</h1>
                         <h1 className="mb-2 text-xs">{product.location}</h1>
-                        <h1 className="text-md font-bold">Rp{product.price}</h1>
+                        <h1 className="text-md font-bold">Rp{Number(product.price).toLocaleString('id-ID')}</h1>
+
                     </div>
                 </div>
             </div>

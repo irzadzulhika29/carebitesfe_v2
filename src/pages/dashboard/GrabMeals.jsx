@@ -3,6 +3,7 @@ import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
 import ProductCard from "../../components/dashboard/grabmeals/ProductCard";
 import { useEffect, useState } from 'react';
+import CategoryCard from "../../components/dashboard/grabmeals/CategoryCard";
 
 
 const GrabMeals = () => {
@@ -19,13 +20,29 @@ const GrabMeals = () => {
     <div className="flex min-h-screen">
       <Sidebar />
 
-      <section className="bg-[#f4fef1] w-full pl-60 pt-20">
+      <section className="bg-[#f4fef1] pl-60 pt-20">
         <div className="flex-grow">
           <Navbar showSearchBar={true} />
 
-          <h1 className="mt-5 mx-10 text-2xl font-bold">Grab Meals</h1>
-          <h1 className="mx-10 my-2">Enjoy It!</h1>
-          <section className="min-h-screen mx-10 my-5">
+
+
+          <h1 className="mt-5 mx-10 text-2xl font-bold text-[#45c517] mb-3">Grab Meals</h1>
+
+          <section className="min-h-screen mx-10 ">
+            <div className="flex flex-wrap items-center gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                className="fill-current text-[#45c517] hover:cursor-pointer bi bi-filter-square-fill"
+                viewBox="0 0 16 16"
+              >
+                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm.5 5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1 0-1M4 8.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m2 3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5" />
+              </svg>
+
+              <CategoryCard />
+            </div>
+
             <div className="flex gap-5 justify-between flex-wrap">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />

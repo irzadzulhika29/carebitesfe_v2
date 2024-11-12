@@ -6,11 +6,12 @@
         "photoProfile": "https://yt3.googleusercontent.com/gb3DOFjQfFKlCrlIZbZb2w1LY0PDpy3gU4aquZudTn7YHfqoswyMunOm-6x5q46oMmAOohr6hA=s900-c-k-c0x00ffffff-no-rj",
         "productName": "Ayam Bakar Madu",
         "location": "Malang",
+        "address": "Jl. Pahlawan No.1, Malang",
         "price": "12000",
         "timeOver": "20.00",
-        "description": "Ayam bakar madu adalah salah satu varian hidangan ayam bakar yang khas dengan rasa manis gurih yang memanjakan lidah. Hidangan ini dibuat dengan melumuri ayam dengan bumbu rempah yang kaya, seperti bawang putih, bawang merah, jahe, dan kecap manis, yang kemudian dipadukan dengan madu sebagai bahan utama. Proses pembakaran dilakukan perlahan di atas bara api atau panggangan, sehingga bumbu meresap sempurna ke dalam daging dan menghasilkan aroma yang menggugah selera.",
+        "description": "Ayam bakar madu adalah hidangan ayam bakar khas yang memadukan cita rasa manis dan gurih. Dibuat dengan bumbu rempah seperti bawang putih, bawang merah, dan jahe, yang kemudian dicampur dengan kecap manis dan madu sebagai bahan utama. Proses pembakaran yang perlahan di atas bara api memastikan bumbu meresap ke dalam daging, menghasilkan aroma dan rasa yang menggugah selera.",
         "category": "Makanan",
-        "stok" : 12
+        "stok": 12
     },
     {
         "id": 2,
@@ -19,11 +20,12 @@
         "image_url": "https://static.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/p1/1005/2023/12/30/singkong-keju-merekah-2295343414.jpg",
         "productName": "Singkong Keju",
         "location": "Ngawi",
+        "address": "Jl. Kartini No.10, Ngawi",
         "price": "10000",
         "timeOver": "20.00",
-        "description": "Singkong keju adalah singkong yang diolah dengan tambahan keju yang membuat rasa singkong menjadi lebih nikmat",
+        "description": "Singkong keju adalah camilan khas yang menggabungkan kelezatan singkong goreng dengan taburan keju. Tekstur singkong yang renyah di luar dan lembut di dalam dipadukan dengan gurihnya keju, menciptakan kombinasi rasa yang nikmat dan cocok sebagai camilan sore atau teman minum teh.",
         "category": "Makanan",
-        "stok" : 10
+        "stok": 10
     },
     {
         "id": 3,
@@ -32,11 +34,12 @@
         "image_url": "https://awsimages.detik.net.id/community/media/visual/2023/05/16/resep-puding-cokelat-saus-vanili.jpeg?w=600&q=90",
         "productName": "Puding Cokelat",
         "location": "Mojokerto",
+        "address": "Jl. Raya No.2, Mojokerto",
         "price": "15000",
         "timeOver": "21.00",
-        "description": "Puding cokelat khas Mojokerto dengan rasa lembut dan manis alami.",
+        "description": "Puding cokelat ini memiliki tekstur yang lembut dan rasa manis yang pas, terbuat dari cokelat berkualitas yang menciptakan sensasi lembut di setiap gigitan. Hidangan ini cocok untuk dinikmati sebagai dessert setelah makan malam atau sebagai camilan di sore hari.",
         "category": "Makanan",
-        "stok" : 10
+        "stok": 10
     },
     {
         "id": 4,
@@ -45,13 +48,15 @@
         "image_url": "https://pesonanusantara.co.id/images/upload//p/e/pes-bakpiapathuk25.jpg",
         "productName": "Bakpia Kacang Hijau",
         "location": "Yogyakarta",
+        "address": "Jl. Malioboro No.25, Yogyakarta",
         "price": "25000",
         "timeOver": "22.00",
-        "description": "Bakpia isi kacang hijau dengan kulit lembut dan rasa manis yang pas.",
+        "description": "Bakpia Pathok 25 merupakan camilan khas Yogyakarta yang terkenal, dengan isian kacang hijau yang manis dan kulit luar yang lembut. Dibuat dari bahan-bahan berkualitas, bakpia ini cocok untuk oleh-oleh atau camilan sehari-hari.",
         "category": "Makanan",
-        "stok" : 10,
-        "categories":[
-            "Kue", "Kacang Hijau"
+        "stok": 10,
+        "categories": [
+            "Kue",
+            "Kacang Hijau"
         ]
     },
     {
@@ -61,11 +66,55 @@
         "image_url": "https://awsimages.detik.net.id/community/media/visual/2021/04/14/serabi-solo-kreasi-sasa.jpeg?w=600&q=90",
         "productName": "Serabi Solo",
         "location": "Solo",
+        "address": "Jl. Notosuman No.7, Solo",
         "price": "25000",
         "timeOver": "19.00",
-        "description": "Serabi khas Solo dengan rasa gurih dan manis, cocok untuk camilan sore.",
+        "description": "Serabi Solo Notosuman adalah serabi khas Solo yang memiliki cita rasa gurih dan sedikit manis. Terbuat dari adonan tepung beras dan santan yang dipanggang hingga menghasilkan pinggiran yang renyah dan bagian tengah yang lembut. Cocok untuk camilan pagi atau sore hari.",
         "category": "Makanan",
-        "stok" : 10
-
+        "stok": 10
+    },
+    {
+        "id": 6,
+        "owner": "Pisang Keju Sri Rejeki",
+        "photoProfile": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldYa1eYIril9T3U-0yEnfb4lLLY6lmnrEPQ&s",
+        "image_url": "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/6f9b6b69-e586-4e53-bf85-f300687898fb_Go-Biz_20211104_140653.jpeg",
+        "productName": "Pisang Keju",
+        "location": "Malang",
+        "address": "Jl. Kawi No.3, Malang",
+        "price": "10000",
+        "timeOver": "19.00",
+        "description": "Pisang keju adalah camilan yang menggabungkan manisnya pisang goreng dengan topping keju parut yang gurih. Kombinasi rasa manis dan asin ini sangat cocok sebagai teman ngopi atau camilan santai.",
+        "category": "Makanan",
+        "stok": 10
+    },
+    {
+        "id": 7,
+        "owner": "Roti Bakar Pak Kumis",
+        "photoProfile": "https://cdn.pixabay.com/photo/2016/03/31/20/12/avatar-1295403_960_720.png",
+        "image_url": "https://cdn.pixabay.com/photo/2015/05/07/13/46/toast-756293_960_720.jpg",
+        "productName": "Roti Bakar Cokelat Keju",
+        "location": "Bandung",
+        "address": "Jl. Braga No.15, Bandung",
+        "price": "15000",
+        "timeOver": "21.00",
+        "description": "Roti bakar khas Bandung dengan pilihan topping cokelat dan keju yang melimpah. Roti yang dipanggang hingga garing di luar namun tetap lembut di dalam ini sangat cocok untuk dinikmati saat malam hari.",
+        "category": "Makanan",
+        "stok": 15
+    },
+    {
+        "id": 8,
+        "owner": "Es Teler Bang Udin",
+        "photoProfile": "https://cdn.pixabay.com/photo/2021/03/25/15/34/man-6125782_960_720.png",
+        "image_url": "https://cdn.pixabay.com/photo/2022/02/17/19/32/fruit-salad-7019166_960_720.jpg",
+        "productName": "Es Teler Segar",
+        "location": "Jakarta",
+        "address": "Jl. Sudirman No.28, Jakarta",
+        "price": "18000",
+        "timeOver": "22.00",
+        "description": "Es teler segar dengan campuran kelapa muda, alpukat, nangka, dan sirup manis yang menyegarkan. Sangat cocok untuk dinikmati di siang hari untuk menghilangkan dahaga.",
+        "category": "Minuman",
+        "stok": 20
     }
+    
+
 ]

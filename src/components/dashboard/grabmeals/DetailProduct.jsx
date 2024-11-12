@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Sidebar from "../../dashboard/Sidebar";
 import Navbar from "../../dashboard/Navbar";
+import { Link } from 'react-router-dom';
 
 const DetailProduct = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1); // Default pembelian 1
   const [total, setTotal] = useState(0); // Total harga
@@ -38,6 +40,10 @@ const DetailProduct = () => {
     }
   };
 
+  const handlePurchase = () => {
+    navigate(`/payment/${id}`);
+  };
+
   if (!product) return <p>Loading...</p>;
 
   return (
@@ -46,40 +52,55 @@ const DetailProduct = () => {
 
       <section className="bg-[#f4fef1] w-full pl-60 pt-20">
         <div className="flex-grow">
-          <Navbar />
+          <Navbar showSearchBar={true} />
 
-          <div className="mx-10 mt-5 flex">
-            <div className="flex gap-5">
-              <div className="flex flex-col gap-5">
+          <Link to="/grab-meals">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="text-green-500 hover:cursor-pointer  mt-5 mx-10  mb-4 bi bi-arrow-left-short" viewBox="0 0 16 16">
+              <path fillRule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5" />
+            </svg>
+          </Link>
+
+          <div className='flex mx-10  gap-5 justify-between'>
+            <div className=" flex gap-10 p-5 shadow-md rounded-xl min-h-96 bg-white">
+              {/* produk */}
+              <div className="flex flex-col min-w-48 gap-5">
                 <img src={product.image_url} alt={product.name} className="w-48 h-48 object-cover rounded-xl" />
-                <div className="flex items-center gap-3 text-center">
-                  <img src={product.photoProfile} alt={product.photoProfile} className="w-8 h-8 object-cover block rounded-full" />
+                <div className="flex items-center gap-3">
+                  <img src={product.photoProfile} alt={product.photoProfile} className="w-8 h-8 object-cover rounded-full" />
                   <p className="text-xs font-semibold">{product.owner}</p>
                 </div>
               </div>
 
-              <div className="w-1/2">
-                <h1 className="text-3xl font-bold mb-4">{product.productName}</h1>
-                <h3 className="text-2xl font-bold mb-4">Rp{product.price}</h3>
-                <h1 className="bg-[#47cb18] text-white text-xs rounded text-center w-28 py-1">Hingga : {product.timeOver} WIB</h1>
-                <p className="w-18 mt-10 text-lg text-[#47cb18]">Deskripsi</p>
+              <div>
+                {/* deskripsi produk */}
+                <div className="">
+                  <h1 className="text-3xl font-bold mb-2">{product.productName}</h1>
+                  <h3 className="text-2xl font-bold mb-2">Rp{product.price}</h3>
+                  <h1 className="bg-[#e2f7db]  text-xs rounded text-center w-28 py-1 mb-4">
+                    Hingga : {product.timeOver} WIB
+                  </h1>
+                  <p className="text-lg text-[#47cb18] mb-4">Deskripsi</p>
 
-                <div className="flex flex-col mt-5 mb-5">
-                  <h1 className="font-bold text-xs">Detail Produk</h1>
-                  <p className="text-xs">{product.category}</p>
-                </div>
-                <div className="flex flex-col">
-                  <h1 className="font-bold text-xs">Deskripsi Produk</h1>
-                  <p className="text-xs">{product.description}</p>
+                  <div className="flex flex-col mb-4">
+                    <h1 className="font-bold text-xs">Detail Produk</h1>
+                    <p className="text-xs">{product.category}</p>
+                  </div>
+
+                  <div className="flex flex-col">
+                    <h1 className="font-bold text-xs">Deskripsi Produk</h1>
+                    <p className="text-xs">{product.description}</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="min-w-[280px] max-h-64 rounded-xl p-5 bg-white shadow-md flex flex-col">
+            {/* pembayaran */}
+            <div className="flex-1 max-w-72 max-h-64 rounded-xl p-5 bg-white shadow-md flex flex-col">
               <h1 className="font-bold text-lg mb-4">Jumlah pembelian</h1>
+
               {/* Kontrol Jumlah */}
-              <div className="flex justify-between items-center">
-                <div className="flex items-center border rounded-lg py-2 px-3 mb-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center border rounded-lg py-2 px-3">
                   <button onClick={handleDecrease} className="text-green-600 text-2xl font-bold px-2">
                     -
                   </button>
@@ -88,7 +109,7 @@ const DetailProduct = () => {
                     +
                   </button>
                 </div>
-                <p className="text-gray-500 text-sm mb-4">Sisa stok: {product.stok}</p>
+                <p className="text-gray-500 text-sm">Sisa stok: {product.stok}</p>
               </div>
 
               {/* Total */}
@@ -99,13 +120,17 @@ const DetailProduct = () => {
 
               {/* Tombol */}
               <div className="flex justify-between gap-2">
-                <button className="bg-green-600 w-28 text-white px-3 py-1 rounded-lg">Beli</button>
+                <button onClick={handlePurchase} className="bg-green-600 w-28 text-white px-3 py-1 rounded-lg">
+                  Beli
+                </button>
                 <button className="border w-28 border-green-600 py-1 text-green-600 px-3 rounded-lg">
                   + Keranjang
                 </button>
               </div>
             </div>
+
           </div>
+
         </div>
       </section>
     </div>

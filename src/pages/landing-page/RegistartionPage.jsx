@@ -18,27 +18,35 @@ const RegistartionPage = () => {
                             <input className='p-2 rounded-xl border' type="email" name="email" placeholder='Email' />
                             <input className='p-2 rounded-xl border' type="text" name="phoneNumber" placeholder='Phone Number' />
 
+                            {/* Dropdown "Daftar Sebagai" */}
+                            <select className='p-2 rounded-xl border' name="daftarSebagai" defaultValue="">
+                                <option value="" disabled>Daftar Sebagai</option>
+                                <option value="Pengguna">Pengguna</option>
+                                <option value="Mitra">Mitra</option>
+                                <option value="Lembaga Sosial">Lembaga Sosial</option>
+                            </select>
+
                             <div className='relative'>
                                 <input
                                     className='p-2 rounded-xl border w-full'
-
+                                    type="password"
                                     name="password"
                                     placeholder='Password'
                                 />
-
                             </div>
 
                             <div className='relative'>
                                 <input
                                     className='p-2 rounded-xl border w-full'
-
-                                    name="password"
+                                    type="password"
+                                    name="confirmPassword"
                                     placeholder='Confirm Password'
                                 />
-
                             </div>
+
                             <button className='bg-[#45c517] rounded-xl py-2 text-white hover:scale-105 duration-300'>Register</button>
                         </form>
+
 
 
                     </div>

@@ -10,6 +10,7 @@ import ProductDetailPage from './components/dashboard/grabmeals/DetailProduct';
 import HomeLanding from './pages/landing-page/HomeLanding';
 import LoginPage from './pages/landing-page/LoginPage';
 import RegistartionPage from './pages/landing-page/RegistartionPage';
+import Payment from './pages/dashboard/grabmeals/Payment';
 
 const App = () => {
   return (
@@ -26,6 +27,8 @@ const App = () => {
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/regist" element={<RegistartionPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/payment/:id" element={<Payment/>} />
+
         </Routes>
       </Router>
     </div>
