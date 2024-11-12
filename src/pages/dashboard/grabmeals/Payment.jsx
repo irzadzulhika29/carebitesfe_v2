@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../../../components/dashboard/Sidebar';
 import Navbar from '../../../components/dashboard/Navbar';
-import { Link } from 'react-router-dom';
 
 const Payment = () => {
     const { id } = useParams();
@@ -33,11 +32,23 @@ const Payment = () => {
                 <div className="flex-grow">
                     <Navbar showSearchBar={true} />
 
-                    <Link to="/grab-meals">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="text-green-500 hover:cursor-pointer  mt-5 mx-10  mb-4 bi bi-arrow-left-short" viewBox="0 0 16 16">
-                            <path fillRule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5" />
-                        </svg>
-                    </Link>
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="50"
+                        height="50"
+                        fill="currentColor"
+                        className="text-green-500 hover:cursor-pointer mt-5 mx-10 mb-4 bi bi-arrow-left-short"
+                        viewBox="0 0 16 16"
+                        onClick={() => window.history.back()}
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"
+                        />
+                    </svg>
+
+
                     <h1 className="mt-5 mx-10 text-2xl font-bold text-[#45c517] mb-3">Pembayaran</h1>
 
                     <section className="min-h-screen mx-5">
@@ -67,7 +78,7 @@ const Payment = () => {
                                     <div>
                                         <h3 className="text-xl font-bold">{product.productName}</h3>
                                         <p className="text-sm text-gray-600">
-                                            {quantity} x Rp{product.price.toLocaleString()}
+                                            {quantity} x Rp{Number(product.price).toLocaleString('id-ID')}
                                         </p>
                                     </div>
                                 </div>
@@ -89,8 +100,8 @@ const Payment = () => {
                             <div className="bg-white p-6 rounded-lg shadow-md mt-5">
                                 <h2 className="text-lg font-bold mb-4">Total Transaksi</h2>
                                 <div className="flex justify-between">
-                                    <h2>Total Harga : 2 Barang</h2>
-                                    <h2 className="text-xl font-bold">Rp{product.price}</h2>
+                                    <h2>Total Harga : 1 Barang</h2>
+                                    <h2 className="text-xl font-bold">Rp{Number(product.price).toLocaleString('id-ID')}</h2>
                                 </div>
                                 {/* Pilih metode pembayaran */}
                                 <div className="flex justify-end mt-3">

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Sidebar from "../../dashboard/Sidebar";
 import Navbar from "../../dashboard/Navbar";
-import { Link } from 'react-router-dom';
 
 const DetailProduct = () => {
   const { id } = useParams();
@@ -54,11 +53,20 @@ const DetailProduct = () => {
         <div className="flex-grow">
           <Navbar showSearchBar={true} />
 
-          <Link to="/grab-meals">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="text-green-500 hover:cursor-pointer  mt-5 mx-10  mb-4 bi bi-arrow-left-short" viewBox="0 0 16 16">
-              <path fillRule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5" />
-            </svg>
-          </Link>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            fill="currentColor"
+            className="text-green-500 hover:cursor-pointer mt-5 mx-10 mb-4 bi bi-arrow-left-short"
+            viewBox="0 0 16 16"
+            onClick={() => window.history.back()}
+          >
+            <path
+              fillRule="evenodd"
+              d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"
+            />
+          </svg>
 
           <div className='flex mx-10  gap-5 justify-between'>
             <div className=" flex gap-10 p-5 shadow-md rounded-xl min-h-96 bg-white">
@@ -75,7 +83,7 @@ const DetailProduct = () => {
                 {/* deskripsi produk */}
                 <div className="">
                   <h1 className="text-3xl font-bold mb-2">{product.productName}</h1>
-                  <h3 className="text-2xl font-bold mb-2">Rp{product.price}</h3>
+                  <h3 className="text-2xl font-bold mb-2">Rp{Number(product.price).toLocaleString('id-ID')}</h3>
                   <h1 className="bg-[#e2f7db]  text-xs rounded text-center w-28 py-1 mb-4">
                     Hingga : {product.timeOver} WIB
                   </h1>
