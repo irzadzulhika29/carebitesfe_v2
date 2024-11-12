@@ -1,6 +1,6 @@
 // HomeDashboard.jsx
-import Sidebar from "../../components/Sidebar";
-import Navbar from "../../components/Navbar";
+import Sidebar from "../../components/dashboard/Sidebar";
+import Navbar from "../../components/dashboard/Navbar";
 
 const ShareYourActicty = () => {
     return (

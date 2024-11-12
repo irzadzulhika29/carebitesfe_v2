@@ -1,4 +1,4 @@
-import userData from '../assets/user/userData.json';
+import userData from '../../assets/user/userData.json';
 import { FaSearch } from "react-icons/fa";
 
 const Navbar = ({ showSearchBar }) => {

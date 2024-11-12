@@ -1,5 +1,6 @@
-import Sidebar from "../../components/Sidebar";
-import Navbar from "../../components/Navbar";
+// HomeDashboard.jsx
+import Sidebar from "../../components/dashboard/Sidebar";
+import Navbar from "../../components/dashboard/Navbar";
 
 const HomeDashboard = () => {
   return (

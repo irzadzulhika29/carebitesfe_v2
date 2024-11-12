@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Sidebar from '../../Sidebar';
-import Navbar from '../../Navbar';
+import Sidebar from "../../dashboard/Sidebar";
+import Navbar from "../../dashboard/Navbar";
 
 const DetailProduct = () => {
   const { id } = useParams();

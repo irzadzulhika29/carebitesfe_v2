@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Sidebar from "../../components/Sidebar";
-import Navbar from "../../components/Navbar";
+import Sidebar from "../../components/dashboard/Sidebar";
+import Navbar from "../../components/dashboard/Navbar";
 import ProductForm from "../../components/dashboard/sharemeals/ProductForm";
 import PickupForm from "../../components/dashboard/sharemeals/PickupForm";
 import { saveAs } from "file-saver";
