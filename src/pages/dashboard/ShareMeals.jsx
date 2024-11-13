@@ -1,8 +1,7 @@
-import  { useState } from "react";
+import React, { useState } from "react";
 import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
-import ProductForm from "../../components/dashboard/sharemeals/ProductForm";
-import PickupForm from "../../components/dashboard/sharemeals/PickupForm";
+import ShareMealsForm from "../../components/dashboard/sharemeals/ShareMealsForm";
 import { saveAs } from "file-saver";
 import kotaData from "../../assets/sharemeals/kotaData.json"; // Import JSON
 
@@ -65,7 +64,7 @@ const ShareMeals = () => {
           <Navbar />
           <h1 className="mt-5 mx-10 text-2xl font-bold">Share Meals</h1>
           <div className="mt-5 mx-10 flex min-h-screen flex-col gap-5">
-            <ProductForm
+            <ShareMealsForm
               productName={productName}
               setProductName={setProductName}
               productDescription={productDescription}
@@ -83,8 +82,6 @@ const ShareMeals = () => {
               handlePriceChange={(e) => setPrice(e.target.value.replace(/\D/g, ""))}
               productPhoto={productPhoto}
               setProductPhoto={setProductPhoto}
-            />
-            <PickupForm
               pickupLocation={pickupLocation}
               setPickupLocation={setPickupLocation}
               date={date}
@@ -100,7 +97,7 @@ const ShareMeals = () => {
               kotaData={kotaData}
             />
             <button
-              className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4  mb-5"
+              className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mb-5"
               onClick={handleDownloadJson}
             >
               Unduh JSON

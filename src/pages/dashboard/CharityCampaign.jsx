@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
 import CharityCard from "../../components/dashboard/charitycampaign/CharityCard";
@@ -7,7 +7,6 @@ import charityData from '../../assets/lembagasosial/lembagaSosialData.json';
 const CharityCampaign = () => {
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar akan selalu fixed di sebelah kiri */}
       <Sidebar showSearchBar={true} />
 
       <section className="bg-[#f4fef1] w-full pl-60 pt-20">
@@ -18,13 +17,19 @@ const CharityCampaign = () => {
 
           <section className="min-h-screen mx-10 my-5 rounded-md">
             <div className="flex flex-wrap gap-10">
-              {charityData.lembagaSosial.map((lembaga, index) => (
+              {charityData.map((lembaga) => (
                 <CharityCard
-                  key={index}
+                  key={lembaga.id}
+                  id={lembaga.id}
                   name={lembaga.name}
                   location={lembaga.location}
                   image_url={lembaga.image_url}
-                  campaign={lembaga.campaign}
+                  campaign={{
+                    title: lembaga.campaign_title,
+                    collected: lembaga.collected,
+                    target: lembaga.target,
+                    campaign_image_url: lembaga.campaign_image_url,
+                  }}
                 />
               ))}
             </div>
