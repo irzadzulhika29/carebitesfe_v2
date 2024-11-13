@@ -1,6 +1,7 @@
 // HomeDashboard.jsx
 import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
+import CharityCard from "../../components/dashboard/charitycampaign/CharityCard";
 
 const CharityCampign = () => {
   return (
@@ -14,8 +15,14 @@ const CharityCampign = () => {
           <Navbar showSearchBar={true} />
           <h1 className="mt-5 mx-10 text-2xl font-bold">Charity Campaign</h1>
           <h1 className="mx-10 my-2">Hello, Welcomeback!</h1>
-          <section className="min-h-screen mx-10 my-5 rounded-md bg-white shadow-md">
+          <section className="min-h-screen mx-10 my-5 rounded-md">
+
+            <div className="flex flex-wrap gap-10 ">
+
+              <CharityCard />
+            </div>
             {/* Konten tambahan di sini */}
+
           </section>
         </div>
       </section>
