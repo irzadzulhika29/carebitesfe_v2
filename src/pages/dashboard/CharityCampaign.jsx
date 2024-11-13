@@ -1,8 +1,8 @@
-
 import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
 import CharityCard from "../../components/dashboard/charitycampaign/CharityCard";
 import charityData from '../../assets/lembagasosial/lembagaSosialData.json';
+import { Link } from "react-router-dom";
 
 const CharityCampaign = () => {
   return (
@@ -16,6 +16,15 @@ const CharityCampaign = () => {
           <p className="mx-10 my-2">Hello, Welcome back!</p>
 
           <section className="min-h-screen mx-10 my-5 rounded-md">
+            <Link to="/campaign-form">
+              <button
+                className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mb-5"
+                type="submit"
+              >
+                Buat Charity
+              </button>
+            </Link>
+
             <div className="flex flex-wrap gap-10">
               {charityData.map((lembaga) => (
                 <CharityCard

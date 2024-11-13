@@ -37,24 +37,7 @@ const ShareMeals = () => {
     setCategories(categories.filter((cat) => cat !== category));
   };
 
-  const handleDownloadJson = () => {
-    const productData = {
-      productName,
-      productDescription,
-      categories,
-      stock,
-      price,
-      productPhoto,
-      pickupLocation,
-      kota: selectedKota,
-      kecamatan: selectedKecamatan,
-      kelurahan: selectedKelurahan,
-      date,
-      time,
-    };
-    const blob = new Blob([JSON.stringify(productData, null, 2)], { type: "application/json" });
-    saveAs(blob, "productData.json");
-  };
+
 
   return (
     <div className="flex min-h-screen">
@@ -98,9 +81,9 @@ const ShareMeals = () => {
             />
             <button
               className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mb-5"
-              onClick={handleDownloadJson}
+              type="submit"
             >
-              Unduh JSON
+              Upload
             </button>
           </div>
         </div>
