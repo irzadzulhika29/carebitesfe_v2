@@ -1,0 +1,28 @@
+{
+    "lembagaSosial": [
+        {
+            "id": 1,
+            "name": "Ambafeds Foundation",
+            "location": "Malang, Indonesia",
+            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPaqecWvRcBIk8VlB_qciK7MlvoqTf9LxTA&s",
+            "campaign": {
+                "title": "Nasi Bungkus Gratis",
+                "collected": 3000000,
+                "target": 10000000,
+                "campaign_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL6hZQejIAeBZ-UQnX9Eov3c13UsLOZkXtPw&s"
+            }
+        },
+        {
+            "id": 2,
+            "name": "Yayasan Kasih Duit",
+            "location": "Jakarta, Indonesia",
+            "image_url": "https://cdn.worldvectorlogo.com/logos/spongebob-squarepants-2.svg",
+            "campaign": {
+                "title": "Bantuan Pendidikan",
+                "collected": 5000000,
+                "target": 15000000,
+                "campaign_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa9KitGehPr75h3k7gRuiNJTEHWW1NoUd_aw&s"
+            }
+        }
+    ]
+}

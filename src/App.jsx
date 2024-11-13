@@ -11,6 +11,7 @@ import HomeLanding from './pages/landing-page/HomeLanding';
 import LoginPage from './pages/landing-page/LoginPage';
 import RegistartionPage from './pages/landing-page/RegistartionPage';
 import Payment from './pages/dashboard/grabmeals/Payment';
+import CharityCampaignDetail from './components/dashboard/charitycampaign/CharityCampaignDetail';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/regist" element={<RegistartionPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/payment/:id" element={<Payment/>} />
+          <Route path="/charity-campaign/:id" element={<CharityCampaignDetail />} />
 
         </Routes>
       </Router>
