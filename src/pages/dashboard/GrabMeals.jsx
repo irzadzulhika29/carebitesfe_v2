@@ -3,7 +3,7 @@ import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
 import ProductCard from "../../components/dashboard/grabmeals/ProductCard";
 import { useEffect, useState } from 'react';
-import CategoryCard from "../../components/dashboard/grabmeals/CategoryCard";
+import CategoryCard from "../../components/dashboard/CategoryCard";
 
 const GrabMeals = () => {
   const [products, setProducts] = useState([]);
