@@ -49,7 +49,6 @@ const DetailProduct = () => {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-
       <section className="bg-[#f4fef1] pl-60 pt-20">
         <div className="mt-5 flex-grow">
           <Navbar showSearchBar={true} />
@@ -69,20 +68,29 @@ const DetailProduct = () => {
           </svg>
 
           <section className="min-h-screen mx-10">
-
             <div className="flex mt-5 gap-5 justify-between">
               <div className="flex gap-10 p-5 shadow-md rounded-xl min-h-96 bg-white">
                 {/* Produk */}
                 <div className="flex flex-col min-w-48 gap-5">
-                  <img src={product.image_url} alt={product.name} className="w-48 h-48 object-cover rounded-xl" />
+                  <img
+                    src={product.image_url}
+                    alt={product.name}
+                    className="w-48 h-48 object-cover rounded-xl"
+                  />
                   <div className="flex items-center gap-3">
-                    <img src={product.photoProfile} alt={product.photoProfile} className="w-8 h-8 object-cover rounded-full" />
+                    <img
+                      src={product.photoProfile}
+                      alt={product.photoProfile}
+                      className="w-8 h-8 object-cover rounded-full"
+                    />
                     <p className="text-xs font-semibold">{product.owner}</p>
                   </div>
                 </div>
                 <div>
                   <h1 className="text-3xl font-bold mb-2">{product.productName}</h1>
-                  <h3 className="text-2xl font-bold mb-2">Rp{Number(product.price).toLocaleString('id-ID')}</h3>
+                  <h3 className="text-2xl font-bold mb-2">
+                    Rp{Number(product.price).toLocaleString('id-ID')}
+                  </h3>
                   <h1 className="bg-[#e2f7db] text-xs rounded text-center w-28 py-1 mb-4">
                     Hingga : {product.timeOver} WIB
                   </h1>
@@ -105,9 +113,19 @@ const DetailProduct = () => {
                 {/* Kontrol Jumlah */}
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center border rounded-lg py-2 px-3">
-                    <button onClick={handleDecrease} className="text-green-600 text-2xl font-bold px-2">-</button>
+                    <button
+                      onClick={handleDecrease}
+                      className="text-green-600 text-2xl font-bold px-2"
+                    >
+                      -
+                    </button>
                     <span className="text-green-600 text-xl font-bold mx-4">{quantity}</span>
-                    <button onClick={handleIncrease} className="text-green-600 text-2xl font-bold px-2">+</button>
+                    <button
+                      onClick={handleIncrease}
+                      className="text-green-600 text-2xl font-bold px-2"
+                    >
+                      +
+                    </button>
                   </div>
                   <p className="text-gray-500 text-sm">Sisa stok: {product.stok}</p>
                 </div>
@@ -115,13 +133,22 @@ const DetailProduct = () => {
                 {/* Total */}
                 <div className="flex justify-between items-center w-full mb-4">
                   <span className="text-gray-700">Total</span>
-                  <span className="text-black font-bold">Rp{total.toLocaleString()}</span>
+                  <span className="text-black font-bold">
+                    Rp{total.toLocaleString()}
+                  </span>
                 </div>
 
                 {/* Tombol */}
                 <div className="flex justify-between gap-2">
-                  <button onClick={handlePurchase} className="bg-green-600 w-28 text-white px-3 py-1 rounded-lg">Beli</button>
-                  <button className="border w-28 border-green-600 py-1 text-green-600 px-3 rounded-lg">+ Keranjang</button>
+                  <button
+                    onClick={handlePurchase}
+                    className="bg-[#45c517] hover:bg-green-600 w-28 text-white px-3 py-1 rounded-lg"
+                  >
+                    Beli
+                  </button>
+                  <button className="border w-28 border-green-600 py-1 text-green-600 px-3 rounded-lg">
+                    + Keranjang
+                  </button>
                 </div>
               </div>
             </div>

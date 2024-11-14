@@ -105,7 +105,7 @@ const Payment = () => {
 
                                 {/* Pilih metode pembayaran */}
                                 <div className="flex justify-end mt-3">
-                                    <button className="bg-[#45c517] text-xs text-white font-bold py-2 px-4 rounded-full shadow-md">
+                                    <button className="bg-[#45c517] hover:bg-green-600 text-xs text-white font-bold py-2 px-4 rounded-full">
                                         Pilih Metode Pembayaran
                                     </button>
                                 </div>

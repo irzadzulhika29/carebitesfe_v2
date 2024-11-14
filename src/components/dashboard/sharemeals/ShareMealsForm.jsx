@@ -24,12 +24,13 @@ const ShareMealsForm = ({
   handleInputChange,
   productPhoto,
   setProductPhoto,
+  price,
+  setPrice, // Tambahkan sebagai props
 }) => {
   const kecamatanData = selectedKota ? kotaData[selectedKota] : {};
   const [images, setImages] = useState(Array(5).fill(null));
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categoriesData, setCategoriesData] = useState([]); // State untuk kategori
-  const [price, setPrice] = useState(""); // Menambahkan state untuk harga
 
   // Mengambil data kategori dari public/categoryList.json
   useEffect(() => {
@@ -52,17 +53,17 @@ const ShareMealsForm = ({
     }
   };
 
-  const handlePriceChange = (e) => {
-    // Hanya menerima angka
-    setPrice(e.target.value.replace(/\D/g, ""));
+  const handleDeleteImage = (index) => {
+    const newImages = [...images];
+    newImages[index] = null; // Set gambar pada index tertentu menjadi null
+    setImages(newImages);
   };
 
   return (
     <section className="p-3 rounded-md bg-white shadow-md">
       <h1 className="mb-5 text-xl font-semibold text-[#45c517]">Informasi Produk dan Pengambilan</h1>
       <form className="flex flex-col gap-5">
-
-        {/* Product Information Section */}
+        {/* Input Nama Produk */}
         <div className="flex flex-col">
           <label>Nama Produk</label>
           <input
@@ -86,23 +87,15 @@ const ShareMealsForm = ({
         </div>
 
         <div className="flex flex-col">
-          <label>Kategori Produk</label>
-          <select
+          <label>Harga Produk</label>
+          <input
             className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            <option value="">-- Pilih Kategori --</option>
-            {categoriesData.map((category) => (
-              <option key={category.id} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+            type="text"
+            value={price}
+            onChange={(e) => setPrice(e.target.value.replace(/\D/g, ""))}
+            placeholder="Masukkan harga produk"
+          />
         </div>
-
-        {/* Input Harga Produk */}
-
 
         <div className="flex flex-col mt-4">
           <label>Foto Produk</label>
@@ -110,14 +103,23 @@ const ShareMealsForm = ({
             {images.map((image, index) => (
               <div
                 key={index}
-                className="w-24 h-24 border rounded-md flex items-center justify-center relative"
+                className="relative w-24 h-24 border rounded-md flex items-center justify-center"
               >
                 {image ? (
-                  <img
-                    src={image}
-                    alt={`Foto ${index + 1}`}
-                    className="w-full h-full object-cover rounded-md"
-                  />
+                  <>
+                    <img
+                      src={image}
+                      alt={`Foto ${index + 1}`}
+                      className="w-full h-full object-cover rounded-md"
+                    />
+                    <button
+                      className="absolute top-1 right-1 bg-[#45c517] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                      onClick={() => handleDeleteImage(index)}
+                      type="button"
+                    >
+                      ×
+                    </button>
+                  </>
                 ) : (
                   <label className="flex flex-col items-center justify-center cursor-pointer text-gray-500 bg-gray-100 w-full h-full rounded-md">
                     <input
@@ -132,65 +134,6 @@ const ShareMealsForm = ({
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Pickup Information Section */}
-        <div className="flex flex-col">
-          <label>Kota</label>
-          <select
-            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-            value={selectedKota}
-            onChange={(e) => {
-              setSelectedKota(e.target.value);
-              setSelectedKecamatan("");
-              setSelectedKelurahan("");
-            }}
-          >
-            <option value="">-- Pilih Kota --</option>
-            {Object.keys(kotaData).map((kota, index) => (
-              <option key={index} value={kota}>
-                {kota}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="flex flex-col">
-          <label>Kecamatan</label>
-          <select
-            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-            value={selectedKecamatan}
-            onChange={(e) => {
-              setSelectedKecamatan(e.target.value);
-              setSelectedKelurahan("");
-            }}
-            disabled={!selectedKota}
-          >
-            <option value="">-- Pilih Kecamatan --</option>
-            {Object.keys(kecamatanData).map((kecamatan, index) => (
-              <option key={index} value={kecamatan}>
-                {kecamatan}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="flex flex-col">
-          <label>Kelurahan</label>
-          <select
-            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-            value={selectedKelurahan}
-            onChange={(e) => setSelectedKelurahan(e.target.value)}
-            disabled={!selectedKecamatan}
-          >
-            <option value="">-- Pilih Kelurahan --</option>
-            {selectedKecamatan &&
-              kecamatanData[selectedKecamatan]?.map((kelurahan, index) => (
-                <option key={index} value={kelurahan}>
-                  {kelurahan}
-                </option>
-              ))}
-          </select>
         </div>
 
         <div className="flex flex-col">
@@ -223,6 +166,7 @@ const ShareMealsForm = ({
             onChange={(e) => setTime(e.target.value)}
           />
         </div>
+
         <button
           className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mb-5"
           type="submit"

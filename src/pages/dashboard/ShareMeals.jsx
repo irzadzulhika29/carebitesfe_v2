@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
 import ShareMealsForm from "../../components/dashboard/sharemeals/ShareMealsForm";
-import { saveAs } from "file-saver";
 import kotaData from "../../assets/sharemeals/kotaData.json"; // Import JSON
 
 const ShareMeals = () => {
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
   const [stock, setStock] = useState(0);
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(""); // Tambahkan state untuk harga
   const [productPhoto, setProductPhoto] = useState("");
   const [pickupLocation, setPickupLocation] = useState("");
   const [selectedKota, setSelectedKota] = useState("");
@@ -19,25 +16,6 @@ const ShareMeals = () => {
   const [selectedKelurahan, setSelectedKelurahan] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-
-  const handleAddCategory = () => {
-    if (selectedCategory.trim() === "") {
-      alert("Kategori tidak boleh kosong!");
-      return;
-    }
-    if (categories.includes(selectedCategory)) {
-      alert("Kategori sudah ada!");
-      return;
-    }
-    setCategories([...categories, selectedCategory]);
-    setSelectedCategory("");
-  };
-
-  const handleRemoveCategory = (category) => {
-    setCategories(categories.filter((cat) => cat !== category));
-  };
-
-
 
   return (
     <div className="flex min-h-screen">
@@ -68,17 +46,12 @@ const ShareMeals = () => {
               setProductName={setProductName}
               productDescription={productDescription}
               setProductDescription={setProductDescription}
-              categories={categories}
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-              handleAddCategory={handleAddCategory}
-              handleRemoveCategory={handleRemoveCategory}
               stock={stock}
               increment={() => setStock(stock + 1)}
               decrement={() => setStock(stock > 0 ? stock - 1 : 0)}
               handleInputChange={(e) => setStock(Number(e.target.value))}
               price={price}
-              handlePriceChange={(e) => setPrice(e.target.value.replace(/\D/g, ""))}
+              setPrice={setPrice} // Tambahkan ini
               productPhoto={productPhoto}
               setProductPhoto={setProductPhoto}
               pickupLocation={pickupLocation}
@@ -95,7 +68,6 @@ const ShareMeals = () => {
               setSelectedKelurahan={setSelectedKelurahan}
               kotaData={kotaData}
             />
-
           </div>
         </div>
       </section>
