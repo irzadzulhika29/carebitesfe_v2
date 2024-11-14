@@ -42,9 +42,17 @@ const CharityCampaignForm = () => {
                             </div>
 
                             <div className="flex flex-col">
+                                <label>Deskripsi Campaign</label>
+                                <textarea
+                                    placeholder="Konten Artikel"
+                                    className="rounded-2xl pl-3 border-2 border-green-300 p-3 mt-2 h-48 overflow-y-auto"
+                                ></textarea>
+                            </div>
+
+                            <div className="flex flex-col">
                                 <label>Kategori Campaign</label>
                                 <select className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2">
-                                    <option value="" disabled selected>Pilih Deskripsi Campaign</option>
+                                    <option value="" disabled selected>Pilih Kategori Campaign</option>
                                     <option value="opsi1">Opsi 1</option>
                                     <option value="opsi2">Opsi 2</option>
                                     <option value="opsi3">Opsi 3</option>

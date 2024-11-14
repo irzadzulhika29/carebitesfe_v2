@@ -59,7 +59,7 @@ const ShareMealsForm = ({
 
   return (
     <section className="p-3 rounded-md bg-white shadow-md">
-      <h1 className="mb-5 text-xl font-bold">Informasi Produk dan Pengambilan</h1>
+      <h1 className="mb-5 text-xl font-semibold text-[#45c517]">Informasi Produk dan Pengambilan</h1>
       <form className="flex flex-col gap-5">
 
         {/* Product Information Section */}

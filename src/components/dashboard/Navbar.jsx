@@ -81,12 +81,15 @@ const Navbar = ({ showSearchBar }) => {
           {isDropdownOpen && (
             <div className="absolute right-0 top-12 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
               <ul className="py-1">
-                <li
-                  className="px-4 py-2 hover:bg-[#45c517] hover:text-white cursor-pointer"
+                <Link to="/profile">
+                  <li
+                    className="px-4 py-2 hover:bg-[#45c517] hover:text-white cursor-pointer"
 
-                >
-                  Profile
-                </li>
+                  >
+                    Profile
+                  </li>
+                </Link>
+
                 <li
                   className="px-4 py-2 hover:bg-[#45c517] hover:text-white cursor-pointer"
 

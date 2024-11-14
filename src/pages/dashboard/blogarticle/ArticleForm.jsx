@@ -12,7 +12,7 @@ const ArticleForm = () => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImage(reader.result); // Set image ke state
-            };
+        };
             reader.readAsDataURL(file);
         }
     };
@@ -31,7 +31,7 @@ const ArticleForm = () => {
                             <div className="flex flex-col">
                                 <label>Thumbnail Artikel</label>
                                 <div className="flex gap-4 mt-2">
-                                    <div className="w-48 h-48 border-2 border-[#45c517] overflow-hidden  rounded-xl flex items-center justify-center relative">
+                                    <div className="w-48 h-48 border-2 border-green-300 overflow-hidden  rounded-xl flex items-center justify-center relative">
                                         {image ? (
                                             <img
                                                 src={image}

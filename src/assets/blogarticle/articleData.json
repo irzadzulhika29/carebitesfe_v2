@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "author_name": "AmbaNews",
+        "author_profile": "https://upload.wikimedia.org/wikipedia/commons/c/ca/JTV_%28Indonesian_TV_channel%29_2022.svg",
+        "category": "Politik",
+        "title": "Tips Cepat Lulus Ala Bahlil",
+        "content": "Artificial Intelligence (AI) is set to revolutionize the way we interact with technology. From healthcare to home automation, AI is becoming increasingly integrated into our daily lives. This article explores the potential future applications of AI and how it could impact various industries.",
+        "img_content": "https://asset.kompas.com/crops/sg_fQAGr26rGzn6uzDccd9jGh04=/0x0:0x0/750x500/data/photo/2024/11/13/673499dc2d858.jpeg",
+        "created_at": "15/11/2024",
+        "read_min": "7 menit"
+    },
+    {
+        "id": 2,
+        "author_name": "Kanye Barat",
+        "author_profile": "https://variety.com/wp-content/uploads/2022/09/kanye.jpg?w=1000&h=563&crop=1&resize=910%2C511",
+        "category": "Health",
+        "title": "How to Maintain a Balanced Diet",
+        "content": "Maintaining a balanced diet is essential for overall health and well-being. A diet rich in nutrients, including fruits, vegetables, whole grains, and lean proteins, can help improve physical and mental health. This article provides tips for planning and sticking to a healthy eating plan.",
+        "img_content": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgmKn0Pp5frRxBPC5ACzziFN68BLy9JU0RVA&s",
+        "created_at": "15/01/2021",
+        "read_min": "5 menit"
+    },
+    {
+        "id": 3,
+        "author_name": "Fufu Fafa",
+        "author_profile": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEabHWJsYzB6L6wB7QoctcSmAklswPGJJevA&s",
+        "category": "Lifestyle",
+        "title": "Top 5 Travel Destinations for 2024",
+        "content": "Looking for your next adventure? Here are the top 5 travel destinations to visit in 2024. From the bustling streets of Tokyo to the serene landscapes of Iceland, these destinations offer a mix of culture, natural beauty, and unforgettable experiences.",
+        "img_content": "https://miro.medium.com/v2/resize:fit:1100/format:webp/0*Ri6n4eL24fAcAm1m",
+        "created_at": "15/11/2022",
+        "read_min": "3 menit"
+    },
+    {
+        "id": 4,
+        "author_name": "Rusdisius Jr",
+        "author_profile": "https://www.shutterstock.com/image-photo/happy-african-american-man-wearing-260nw-1537188422.jpg",
+        "category": "Business",
+        "title": "How to Start Your Own Business",
+        "content": "Starting an e-commerce business has never been easier, thanks to the plethora of online tools and platforms available today. In this article, we discuss the key steps involved in setting up an online store, including choosing the right products, building a website, and marketing your business.",
+        "img_content": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuSe1g5bxNOE_eVVUzLpNu4rcs-HRxddILfA&s",
+        "created_at": "15/10/2024",
+        "read_min": "4 menit"
+    }
+]

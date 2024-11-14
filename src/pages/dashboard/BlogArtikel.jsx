@@ -3,6 +3,7 @@ import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
 import ArticleCard from "../../components/dashboard/article/ArticleCard";
 import { Link } from "react-router-dom";
+import articleData from "../../assets/blogarticle/articleData.json";
 
 const BlogArtikel = () => {
     return (
@@ -27,19 +28,16 @@ const BlogArtikel = () => {
                                     <p className="text-md">Buat Artikel</p>
                                 </div>
                             </Link>
-
-
-
-
-
                         </div>
                     </div>
-
-
-                    {/* content */}
+              
                     <section className="min-h-screen mx-10 my-5 rounded-md">
-                        <div className="flex gap-5 justify-start">
-                            <ArticleCard />
+                        <div className="flex gap-5 flex-wrap justify-between">
+                            {articleData.map((article) => (
+                                <Link to={`/article/${article.id}`} key={article.id}>
+                                    <ArticleCard article={article} />
+                                </Link>
+                            ))}
                         </div>
                     </section>
                 </div>
