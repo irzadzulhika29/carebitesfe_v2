@@ -66,7 +66,7 @@ const ShareMealsForm = ({
         <div className="flex flex-col">
           <label>Nama Produk</label>
           <input
-            className="border rounded p-1 mt-2"
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
             type="text"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
@@ -78,7 +78,7 @@ const ShareMealsForm = ({
           <label>Deskripsi Produk</label>
           <textarea
             placeholder="Deskripsi produk"
-            className="border rounded p-1 mt-2"
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
             rows="5"
             value={productDescription}
             onChange={(e) => setProductDescription(e.target.value)}
@@ -88,7 +88,7 @@ const ShareMealsForm = ({
         <div className="flex flex-col">
           <label>Kategori Produk</label>
           <select
-            className="border rounded p-1 mt-2"
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
@@ -102,16 +102,7 @@ const ShareMealsForm = ({
         </div>
 
         {/* Input Harga Produk */}
-        <div className="flex flex-col">
-          <label>Harga Produk</label>
-          <input
-            className="border rounded p-1 mt-2"
-            type="text"
-            value={price}
-            onChange={handlePriceChange}
-            placeholder="Masukkan harga produk"
-          />
-        </div>
+            
 
         <div className="flex flex-col mt-4">
           <label>Foto Produk</label>
@@ -147,7 +138,7 @@ const ShareMealsForm = ({
         <div className="flex flex-col">
           <label>Kota</label>
           <select
-            className="border rounded p-1 mt-2"
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
             value={selectedKota}
             onChange={(e) => {
               setSelectedKota(e.target.value);
@@ -167,7 +158,7 @@ const ShareMealsForm = ({
         <div className="flex flex-col">
           <label>Kecamatan</label>
           <select
-            className="border rounded p-1 mt-2"
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
             value={selectedKecamatan}
             onChange={(e) => {
               setSelectedKecamatan(e.target.value);
@@ -187,7 +178,7 @@ const ShareMealsForm = ({
         <div className="flex flex-col">
           <label>Kelurahan</label>
           <select
-            className="border rounded p-1 mt-2"
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
             value={selectedKelurahan}
             onChange={(e) => setSelectedKelurahan(e.target.value)}
             disabled={!selectedKecamatan}
@@ -205,7 +196,7 @@ const ShareMealsForm = ({
         <div className="flex flex-col">
           <label>Alamat Lengkap</label>
           <input
-            className="border rounded p-1 mt-2"
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
             type="text"
             value={pickupLocation}
             onChange={(e) => setPickupLocation(e.target.value)}
@@ -215,7 +206,7 @@ const ShareMealsForm = ({
         <div className="flex flex-col">
           <label>Tanggal Pengambilan</label>
           <input
-            className="border rounded p-1 mt-2"
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
@@ -225,7 +216,7 @@ const ShareMealsForm = ({
         <div className="flex flex-col">
           <label>Jam Pengambilan</label>
           <input
-            className="border rounded p-1 mt-2"
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
             type="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
