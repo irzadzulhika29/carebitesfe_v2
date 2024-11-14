@@ -1,4 +1,3 @@
-// GrabMeals.jsx
 import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
 import ProductCard from "../../components/dashboard/grabmeals/ProductCard";
@@ -15,8 +14,8 @@ const GrabMeals = () => {
       .then((data) => setProducts(data))
       .catch((error) => console.error('Error fetching product data:', error));
 
-    // Fetch category data from a separate JSON file
-    fetch('/categoryList.json')  // Ensure this path points to your category JSON file
+
+    fetch('/categoryList.json')  
       .then((response) => response.json())
       .then((data) => setCategories(data))
       .catch((error) => console.error('Error fetching category data:', error));
@@ -44,7 +43,6 @@ const GrabMeals = () => {
                 <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm.5 5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1 0-1M4 8.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m2 3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5" />
               </svg>
 
-              {/* Tambahkan max-w-full di sini untuk membatasi lebar */}
               <div className="overflow-x-auto whitespace-nowrap max-w-full">
                 <CategoryCard categories={categories} />
               </div>
@@ -56,8 +54,6 @@ const GrabMeals = () => {
               ))}
             </div>
           </section>
-
-
         </div>
       </section>
     </div>
