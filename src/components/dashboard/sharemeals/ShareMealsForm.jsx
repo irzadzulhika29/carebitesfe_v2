@@ -102,7 +102,7 @@ const ShareMealsForm = ({
         </div>
 
         {/* Input Harga Produk */}
-            
+
 
         <div className="flex flex-col mt-4">
           <label>Foto Produk</label>
@@ -222,6 +222,12 @@ const ShareMealsForm = ({
             onChange={(e) => setTime(e.target.value)}
           />
         </div>
+        <button
+          className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mb-5"
+          type="submit"
+        >
+          Upload
+        </button>
       </form>
     </section>
   );

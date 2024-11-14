@@ -79,12 +79,7 @@ const ShareMeals = () => {
               setSelectedKelurahan={setSelectedKelurahan}
               kotaData={kotaData}
             />
-            <button
-              className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mb-5"
-              type="submit"
-            >
-              Upload
-            </button>
+          
           </div>
         </div>
       </section>
