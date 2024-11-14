@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const ShareMealsForm = ({
   pickupLocation,
@@ -200,6 +200,7 @@ const ShareMealsForm = ({
             type="text"
             value={pickupLocation}
             onChange={(e) => setPickupLocation(e.target.value)}
+            placeholder="Alamat Lengkap"
           />
         </div>
 
