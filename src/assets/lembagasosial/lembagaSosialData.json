@@ -8,7 +8,10 @@
         "description": "Program pembagian nasi bungkus gratis untuk masyarakat kurang mampu di area Malang. Setiap hari kami membagikan 100 nasi bungkus untuk membantu mengurangi kelaparan di kalangan masyarakat yang membutuhkan.",
         "collected": 3000000,
         "target": 10000000,
-        "campaign_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL6hZQejIAeBZ-UQnX9Eov3c13UsLOZkXtPw&s"
+        "category":"Kelaparan",
+        "campaign_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL6hZQejIAeBZ-UQnX9Eov3c13UsLOZkXtPw&s",
+        "start_date": "10-20-2024",
+        "end_date": "10-12-2024"
     },
     {
         "id": 2,
@@ -19,6 +22,9 @@
         "description": "Program beasiswa dan bantuan pendidikan untuk anak-anak kurang mampu di Jakarta. Meliputi bantuan biaya sekolah, perlengkapan sekolah, dan bimbingan belajar untuk memastikan masa depan yang lebih baik bagi mereka.",
         "collected": 5000000,
         "target": 15000000,
-        "campaign_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa9KitGehPr75h3k7gRuiNJTEHWW1NoUd_aw&s"
+        "category":"Kemanusiaan",
+        "campaign_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa9KitGehPr75h3k7gRuiNJTEHWW1NoUd_aw&s",
+         "start_date": "01-10-2024",
+        "end_date": "12-12-2024"
     }
 ]

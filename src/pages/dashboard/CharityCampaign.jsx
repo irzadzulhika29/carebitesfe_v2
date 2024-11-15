@@ -13,9 +13,9 @@ const CharityCampaign = () => {
         <div className="flex-grow">
           <Navbar showSearchBar={true} />
           <h1 className="mt-5 mx-10 text-2xl font-bold">Charity Campaign</h1>
-          <p className="mx-10 my-2">Hello, Welcome back!</p>
 
-          <section className="min-h-screen mx-10 my-5 rounded-md">
+
+          <section className="min-h-screen mx-10  rounded-md">
             <Link to="/campaign-form">
               <button
                 className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mb-5"

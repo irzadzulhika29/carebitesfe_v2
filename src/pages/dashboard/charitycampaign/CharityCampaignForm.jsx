@@ -20,6 +20,12 @@ const CharityCampaignForm = () => {
         }
     };
 
+    const handleDeleteImage = (index) => {
+        const newImages = [...images];
+        newImages[index] = null;
+        setImages(newImages);
+    };
+
     return (
         <div className="flex min-h-screen">
             <Sidebar />
@@ -93,16 +99,18 @@ const CharityCampaignForm = () => {
                                 <label>Foto Campaign</label>
                                 <div className="flex gap-4 mt-2">
                                     {images.map((image, index) => (
-                                        <div
-                                            key={index}
-                                            className="w-24 h-24 border rounded-md flex items-center justify-center relative"
-                                        >
+                                        <div key={index} className="relative w-24 h-24 border rounded-md flex items-center justify-center">
                                             {image ? (
-                                                <img
-                                                    src={image}
-                                                    alt={`Foto ${index + 1}`}
-                                                    className="w-full h-full object-cover rounded-md"
-                                                />
+                                                <>
+                                                    <img src={image} alt={`Foto ${index + 1}`} className="w-full h-full object-cover rounded-md" />
+                                                    <button
+                                                        onClick={() => handleDeleteImage(index)}
+                                                        className="absolute top-1 right-1 bg-[#45c517] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                                                        type="button"
+                                                    >
+                                                        ×
+                                                    </button>
+                                                </>
                                             ) : (
                                                 <label className="flex flex-col items-center justify-center cursor-pointer text-gray-500 bg-gray-100 w-full h-full rounded-md">
                                                     <input
