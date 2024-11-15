@@ -3,6 +3,7 @@ import Navbar from "../../components/dashboard/Navbar";
 import userData from "../../assets/user/userData.json";
 import { useState } from 'react';
 import HistoryCard from "../../components/dashboard/profile/HistoryCard";
+import NoData from "../../components/dashboard/profile/NoData";
 
 const Profile = () => {
     const [selectedNav, setSelectedNav] = useState('Riwayat Grab Meals');
@@ -68,32 +69,25 @@ const Profile = () => {
                                     Riwayat Article
                                 </p>
                             </div>
+
                             {/* history card */}
                             <div className="mt-5">
                                 {selectedNav === 'Riwayat Grab Meals' && (
-                                    <div className="p-4 w-full pb-5 bg-white shadow-md rounded-xl transform transition-transform duration-300 hover:-translate-y-2">
-                                       <HistoryCard />
+                                    <div className="p-4 w-full pb-5 bg-white shadow-md rounded-xl transform transition-transform duration-300 hover:-translate-y-2">  
+                                            <HistoryCard />
                                     </div>
                                 )}
                                 {selectedNav === 'Riwayat Sharing Meals' && (
-                                    <div className="p-4 w-full pb-5 bg-white shadow-md rounded-xl">
-                                        {/* Konten untuk Riwayat Sharing Meals */}
-                                    </div>
+                                    <NoData />
                                 )}
                                 {selectedNav === 'Riwayat Activity' && (
-                                    <div className="p-4 w-full pb-5 bg-white shadow-md rounded-xl">
-                                        {/* Konten untuk Riwayat Activity */}
-                                    </div>
+                                    <NoData />
                                 )}
                                 {selectedNav === 'Riwayat Charity' && (
-                                    <div className="p-4 w-full pb-5 bg-white shadow-md rounded-xl">
-                                        {/* Konten untuk Riwayat Charity */}
-                                    </div>
+                                    <NoData />
                                 )}
                                 {selectedNav === 'Riwayat Article' && (
-                                    <div className="p-4 w-full pb-5 bg-white shadow-md rounded-xl">
-                                        {/* Konten untuk Riwayat Article */}
-                                    </div>
+                                    <NoData />
                                 )}
                             </div>
                         </div>

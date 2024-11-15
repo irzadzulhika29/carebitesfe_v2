@@ -1,6 +1,6 @@
 const HistoryCard = () => {
     return (
-        <div>
+        <>
             <p className="font-semibold  mb-2">01 Oktober 2024</p>
             <div className="flex gap-2">
                 <img className="w-32 h-20 object-cover rounded-md" src="https://thefamilydinnerproject.org/wp-content/uploads/2014/07/Sunday-roast-chicken2.jpg" alt="" />
@@ -19,7 +19,7 @@ const HistoryCard = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
