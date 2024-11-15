@@ -9,12 +9,13 @@ import ProductDetailPage from './components/dashboard/grabmeals/DetailProduct';
 import HomeLanding from './pages/landing-page/HomeLanding';
 import LoginPage from './pages/landing-page/LoginPage';
 import RegistrationPage from './pages/landing-page/RegistartionPage';
-import Payment from './pages/dashboard/grabmeals/Payment';
+import GrandProduct from './pages/dashboard/grabmeals/GrandProduct';
 import CharityCampaignDetail from './components/dashboard/charitycampaign/CharityCampaignDetail';
 import CharityCampaignForm from './pages/dashboard/charitycampaign/CharityCampaignForm';
 import ArticleForm from './pages/dashboard/blogarticle/ArticleForm';
 import Profile from './pages/dashboard/Profile';
 import ArticleDetail from './pages/dashboard/blogarticle/ArticleDetail';
+import PaymentMethod from './pages/dashboard/grabmeals/PaymentMethod';
 
 const App = () => {
   return (
@@ -31,12 +32,13 @@ const App = () => {
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/regist" element={<RegistrationPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/payment/:id" element={<Payment />} />
+          <Route path="/payment/:id" element={<GrandProduct />} />
           <Route path="/article/:id" element={<ArticleDetail />} />
           <Route path="/charity-campaign/:id" element={<CharityCampaignDetail />} />
           <Route path="/campaign-form" element={<CharityCampaignForm />} />
           <Route path="/article-form" element={<ArticleForm />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/payment-method/:id" element={<PaymentMethod />} />
         </Routes>
       </Router>
     </div>

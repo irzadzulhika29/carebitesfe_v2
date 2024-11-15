@@ -1,23 +1,11 @@
-
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const CharityCard = ({ id, name, location, image_url, campaign }) => {
   const { title, collected, target, campaign_image_url } = campaign;
   const progress = (collected / target) * 100;
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(`/charity-campaign/${id}`);
-  };
-
-  const handleDonateClick = (e) => {
-    e.stopPropagation(); // Mencegah card mengarahkan ke detail saat tombol ditekan
-    // Tambahkan logika untuk donasi jika diperlukan
-    console.log(`Donasi untuk campaign ${title}`);
-  };
 
   return (
-    <div onClick={handleClick} className="bg-white w-64 shadow-lg pb-10 flex flex-col p-4 rounded-lg cursor-pointer">
+    <div className="bg-white w-64 shadow-lg pb-10 flex flex-col p-4 rounded-lg cursor-pointer">
       <img
         src={campaign_image_url}
         alt="Campaign Image"
@@ -50,12 +38,13 @@ const CharityCard = ({ id, name, location, image_url, campaign }) => {
         Rp{collected.toLocaleString('id-ID')}/Rp{target.toLocaleString('id-ID')}
       </p>
 
-      <button
-        onClick={handleDonateClick}
-        className="bg-[#45c517] text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300"
+      {/* Gunakan Link untuk navigasi */}
+      <Link
+        to={`/charity-campaign/${id}`}
+        className="bg-[#45c517] text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300 text-center"
       >
         Donasi Sekarang
-      </button>
+      </Link>
     </div>
   );
 };

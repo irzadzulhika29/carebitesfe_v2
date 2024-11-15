@@ -51,7 +51,7 @@ const ShareMeals = () => {
               decrement={() => setStock(stock > 0 ? stock - 1 : 0)}
               handleInputChange={(e) => setStock(Number(e.target.value))}
               price={price}
-              setPrice={setPrice} // Tambahkan ini
+              setPrice={setPrice} 
               productPhoto={productPhoto}
               setProductPhoto={setProductPhoto}
               pickupLocation={pickupLocation}
