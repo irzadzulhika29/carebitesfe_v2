@@ -15,7 +15,7 @@ import CharityCampaignForm from './pages/dashboard/charitycampaign/CharityCampai
 import ArticleForm from './pages/dashboard/blogarticle/ArticleForm';
 import Profile from './pages/dashboard/Profile';
 import ArticleDetail from './pages/dashboard/blogarticle/ArticleDetail';
-import PaymentMethod from './pages/dashboard/grabmeals/PaymentMethod';
+import PaymentMethod from './pages/dashboard/PaymentMethod';
 import GrandCharity from './pages/dashboard/charitycampaign/GrandCharity';
 
 const App = () => {

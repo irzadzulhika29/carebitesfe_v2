@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Sidebar from '../../../components/dashboard/Sidebar';
-import Navbar from '../../../components/dashboard/Navbar';
+import Sidebar from '../../components/dashboard/Sidebar';
+import Navbar from '../../components/dashboard/Navbar';
 
 const PaymentMethod = () => {
     const location = useLocation();
