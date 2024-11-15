@@ -81,7 +81,7 @@ const CharityTransaction = () => {
 
                         {/* Tombol Pilih Metode Pembayaran */}
                         <Link
-                            to={`/payment-method/${id}`}
+                            to={`/payment-charity/${id}`}
                             state={{ total: parseInt(donationAmount.replace(/\./g, '')) }}
                         >
                             <button

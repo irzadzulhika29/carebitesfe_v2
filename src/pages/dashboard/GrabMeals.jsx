@@ -3,6 +3,7 @@ import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
 import ProductCard from "../../components/dashboard/grabmeals/ProductCard";
 import CategoryCard from "../../components/dashboard/CategoryCard";
+import { motion } from 'framer-motion';
 
 const GrabMeals = () => {
   // State Management
@@ -18,7 +19,7 @@ const GrabMeals = () => {
       .catch((error) => console.error('Error fetching product data:', error));
 
     // Fetch Categories
-    fetch('/categoryList.json')  
+    fetch('/categoryList.json')
       .then((response) => response.json())
       .then((data) => setCategories(data))
       .catch((error) => console.error('Error fetching category data:', error));
@@ -38,7 +39,12 @@ const GrabMeals = () => {
   );
 
   return (
-    <div className="flex min-h-screen">
+    <motion.div
+      className="flex min-h-screen"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <Sidebar />
 
       <section className="bg-[#f4fef1]  pl-60 pt-20">
@@ -68,7 +74,7 @@ const GrabMeals = () => {
           </section>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 

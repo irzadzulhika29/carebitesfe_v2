@@ -3,6 +3,7 @@ import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../../components/dashboard/Navbar";
 import ShareMealsForm from "../../components/dashboard/sharemeals/ShareMealsForm";
 import kotaData from "../../assets/sharemeals/kotaData.json"; // Import JSON
+import { motion } from "framer-motion"; // Add this import
 
 const ShareMeals = () => {
   const [productName, setProductName] = useState("");
@@ -18,7 +19,12 @@ const ShareMeals = () => {
   const [time, setTime] = useState("");
 
   return (
-    <div className="flex min-h-screen">
+    <motion.div
+      className="flex min-h-screen"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <Sidebar />
       <section className="bg-[#f4fef1] w-full pl-60 pt-20">
         <div className="flex-grow">
@@ -51,7 +57,7 @@ const ShareMeals = () => {
               decrement={() => setStock(stock > 0 ? stock - 1 : 0)}
               handleInputChange={(e) => setStock(Number(e.target.value))}
               price={price}
-              setPrice={setPrice} 
+              setPrice={setPrice}
               productPhoto={productPhoto}
               setProductPhoto={setProductPhoto}
               pickupLocation={pickupLocation}
@@ -71,7 +77,7 @@ const ShareMeals = () => {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 

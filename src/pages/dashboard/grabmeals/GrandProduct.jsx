@@ -73,7 +73,7 @@ const GrandProduct = () => {
 
                                 {/* Pilih metode pembayaran */}
                                 <Link
-                                    to={`/payment-method/${id}`}
+                                    to={`/payment-product/${id}`}
                                     state={{ total }}
                                 >
                                     <div className="flex justify-end mt-3">

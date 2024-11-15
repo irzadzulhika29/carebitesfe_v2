@@ -38,12 +38,12 @@ const PaymentMethod = () => {
         {
             method: "Gopay",
             logo: "https://i.pinimg.com/736x/94/3c/97/943c971903518e53ffd324dd51e46a90.jpg",
-            code: "GOPAY123456",
+            code: "0895386809300",
         },
         {
             method: "OVO",
             logo: "https://bucket.utua.com.br/img/2021/05/27718b01-design-sem-nome.png",
-            code: "OVO654321",
+            code: "0895386809300",
         },
     ];
 

@@ -94,7 +94,7 @@ const DetailProduct = () => {
                   <h1 className="bg-[#e2f7db] text-xs rounded text-center w-28 py-1 mb-4">
                     Hingga : {product.timeOver} WIB
                   </h1>
-                  <p className="text-lg text-[#47cb18] mb-4">Deskripsi</p>
+                  <p className="text-lg text-[#47cb18] mt-20 mb-4">Deskripsi</p>
                   <div className="flex flex-col mb-4">
                     <h1 className="font-bold text-xs">Detail Produk</h1>
                     <p className="text-xs">{product.category}</p>

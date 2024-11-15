@@ -39,7 +39,8 @@ const App = () => {
           <Route path="/campaign-form" element={<CharityCampaignForm />} />
           <Route path="/article-form" element={<ArticleForm />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/payment-method/:id" element={<PaymentMethod />} />
+          <Route path="/payment-product/:id" element={<PaymentMethod />} />
+          <Route path="/payment-charity/:id" element={<PaymentMethod />} />
           <Route path="/charity-transaction/:id" element={<CharityTransaction />} />
         </Routes>
       </Router>
