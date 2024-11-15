@@ -1,6 +1,20 @@
 import { useState, useEffect } from "react";
+import categoryList from '../../../../public/categoryList.json';
+
 
 const ShareMealsForm = ({
+  productName,
+  setProductName,
+  productDescription,
+  setProductDescription,
+  stock,
+  increment,
+  decrement,
+  handleInputChange,
+  price,
+  setPrice,
+  productPhoto,
+  setProductPhoto,
   pickupLocation,
   setPickupLocation,
   date,
@@ -13,26 +27,16 @@ const ShareMealsForm = ({
   setSelectedKecamatan,
   selectedKelurahan,
   setSelectedKelurahan,
-  kotaData,
-  productName,
-  setProductName,
-  productDescription,
-  setProductDescription,
-  stock,
-  increment,
-  decrement,
-  handleInputChange,
-  productPhoto,
-  setProductPhoto,
-  price,
-  setPrice, // Tambahkan sebagai props
+  kotaData
 }) => {
   const kecamatanData = selectedKota ? kotaData[selectedKota] : {};
+  const kelurahanData = selectedKecamatan ? kecamatanData[selectedKecamatan] : [];
+
   const [images, setImages] = useState(Array(5).fill(null));
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [categoriesData, setCategoriesData] = useState([]); // State untuk kategori
+  const [categoriesData, setCategoriesData] = useState([]);
 
-  // Mengambil data kategori dari public/categoryList.json
+  // Load data kategori dari file JSON
   useEffect(() => {
     fetch("/categoryList.json")
       .then((response) => response.json())
@@ -55,7 +59,7 @@ const ShareMealsForm = ({
 
   const handleDeleteImage = (index) => {
     const newImages = [...images];
-    newImages[index] = null; // Set gambar pada index tertentu menjadi null
+    newImages[index] = null;
     setImages(newImages);
   };
 
@@ -135,6 +139,83 @@ const ShareMealsForm = ({
             ))}
           </div>
         </div>
+        <div className="flex flex-col">
+          <label>Kategori Produk</label>
+          <select
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            required
+          >
+            <option value="">Pilih Kategori</option>
+            {categoryList.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Input Kota */}
+        <div className="flex flex-col">
+          <label>Pilih Kota</label>
+          <select
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
+            value={selectedKota}
+            onChange={(e) => {
+              setSelectedKota(e.target.value);
+              setSelectedKecamatan("");
+              setSelectedKelurahan("");
+            }}
+          >
+            <option value="">Pilih Kota</option>
+            {Object.keys(kotaData).map((kota) => (
+              <option key={kota} value={kota}>
+                {kota}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Input Kecamatan */}
+        <div className="flex flex-col">
+          <label>Pilih Kecamatan</label>
+          <select
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
+            value={selectedKecamatan}
+            onChange={(e) => {
+              setSelectedKecamatan(e.target.value);
+              setSelectedKelurahan("");
+            }}
+            disabled={!selectedKota}
+          >
+            <option value="">Pilih Kecamatan</option>
+            {Object.keys(kecamatanData).map((kecamatan) => (
+              <option key={kecamatan} value={kecamatan}>
+                {kecamatan}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Input Kelurahan */}
+        <div className="flex flex-col">
+          <label>Pilih Kelurahan</label>
+          <select
+            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
+            value={selectedKelurahan}
+            onChange={(e) => setSelectedKelurahan(e.target.value)}
+            disabled={!selectedKecamatan}
+          >
+            <option value="">Pilih Kelurahan</option>
+            {kelurahanData.map((kelurahan, index) => (
+              <option key={index} value={kelurahan}>
+                {kelurahan}
+              </option>
+            ))}
+          </select>
+        </div>
+
 
         <div className="flex flex-col">
           <label>Alamat Lengkap</label>

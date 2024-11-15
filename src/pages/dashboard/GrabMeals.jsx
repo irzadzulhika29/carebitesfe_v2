@@ -41,8 +41,8 @@ const GrabMeals = () => {
     <div className="flex min-h-screen">
       <Sidebar />
 
-      <section className="bg-[#f4fef1] pl-60 pt-20">
-        <div className="flex-grow">
+      <section className="bg-[#f4fef1]  pl-60 pt-20">
+        <div className="flex-grow mb-5">
           {/* Header Section */}
           <Navbar showSearchBar={true} />
           <h1 className="mt-5 mx-10 text-2xl font-bold text-[#45c517]">

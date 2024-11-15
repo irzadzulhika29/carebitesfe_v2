@@ -40,7 +40,7 @@ const CharityCard = ({ id, name, location, image_url, campaign }) => {
 
       {/* Gunakan Link untuk navigasi */}
       <Link
-        to={`/charity-campaign/${id}`}
+        to={`/charity-transaction/${id}`}
         className="bg-[#45c517] text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300 text-center"
       >
         Donasi Sekarang

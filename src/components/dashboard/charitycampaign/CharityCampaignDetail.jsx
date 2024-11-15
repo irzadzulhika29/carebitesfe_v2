@@ -89,7 +89,7 @@ const CharityCampaignDetail = () => {
 
               <button
                 className='bg-[#45c517] text-white w-full p-2 hover:bg-green-600 rounded-full mt-5 transition duration-300'
-                onClick={() => navigate(`/grandcharity/${campaign.id}`)}
+                onClick={() => navigate(`/charity-transaction/${campaign.id}`)}
               >
                 Donasi Sekarang
               </button>

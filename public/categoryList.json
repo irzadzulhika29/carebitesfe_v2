@@ -1,7 +1,7 @@
 [
-    { "id": 1, "name": "Makanan Siap Saji" },
-    { "id": 2, "name": "Minuman Ringan" },
-    { "id": 3, "name": "Camilan & Permen" },
-    { "id": 4, "name": "Daging & Ikan Segar" },
-    { "id": 5, "name": "Buah-Buahan" }
+    { "id": 1, "name": "Nasi & Olahan" },
+    { "id": 2, "name": "Ayam & Bebek" },
+    { "id": 3, "name": "Ikan & Seafood" },
+    { "id": 4, "name": "Mie & Pasta" },
+    { "id": 5, "name": "Sate & Sop" }
 ]

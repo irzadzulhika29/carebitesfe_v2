@@ -5,7 +5,7 @@ import Sidebar from '../../../components/dashboard/Sidebar';
 import Navbar from '../../../components/dashboard/Navbar';
 import { Link } from 'react-router-dom';
 
-const GrandCharity = () => {
+const CharityTransaction = () => {
     const { id } = useParams();
     const campaign = charityData.find((item) => item.id === parseInt(id));
 
@@ -94,7 +94,6 @@ const GrandCharity = () => {
                                 Pilih Metode Pembayaran
                             </button>
                         </Link>
-
                     </section>
                 </div>
             </section>
@@ -102,4 +101,4 @@ const GrandCharity = () => {
     );
 };
 
-export default GrandCharity;
+export default CharityTransaction;

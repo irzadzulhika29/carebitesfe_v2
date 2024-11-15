@@ -5,8 +5,8 @@ import Navbar from "../../../components/dashboard/Navbar";
 import MiniCardArticle from "../../../components/dashboard/article/MiniCardArticle";
 
 const ArticleDetail = () => {
-    const { id } = useParams();  // Mendapatkan id artikel dari URL
-    const article = articles.find(article => article.id === parseInt(id, 10)); // Parsing id dengan basis 10
+    const { id } = useParams(); 
+    const article = articles.find(article => article.id === parseInt(id, 10));
 
     if (!article) {
         return <div>Artikel tidak ditemukan</div>;
@@ -62,7 +62,7 @@ const ArticleDetail = () => {
                             </div>
 
                             <div className="w-[30%]">
-                                
+        
                                 <MiniCardArticle />
                             </div>
                         </div>

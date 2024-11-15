@@ -16,7 +16,7 @@ import ArticleForm from './pages/dashboard/blogarticle/ArticleForm';
 import Profile from './pages/dashboard/Profile';
 import ArticleDetail from './pages/dashboard/blogarticle/ArticleDetail';
 import PaymentMethod from './pages/dashboard/PaymentMethod';
-import GrandCharity from './pages/dashboard/charitycampaign/GrandCharity';
+import CharityTransaction from './pages/dashboard/charitycampaign/CharityTransaction';
 
 const App = () => {
   return (
@@ -40,7 +40,7 @@ const App = () => {
           <Route path="/article-form" element={<ArticleForm />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/payment-method/:id" element={<PaymentMethod />} />
-          <Route path="/grandcharity/:id" element={<GrandCharity />} />
+          <Route path="/charity-transaction/:id" element={<CharityTransaction />} />
         </Routes>
       </Router>
     </div>
