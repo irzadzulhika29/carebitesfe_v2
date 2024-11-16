@@ -10,7 +10,7 @@ const DetailProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Plain JavaScript functions for quantity management
+
   function handleQuantityChange(currentQty, stock, isIncrease, price) {
     let newQty;
 
@@ -60,29 +60,43 @@ const DetailProduct = () => {
     return <p>Loading...</p>;
   }
 
-
   const handleAddToCart = () => {
     const cartItem = {
       id: product.id,
       productName: product.productName,
       price: product.price,
+      quantity: quantity,
+      total: total,
       image_url: product.image_url,
-      quantity: quantity
+      owner: product.owner,
+      photoProfile: product.photoProfile
     };
-
-    const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
-
-    if (existingItemIndex !== -1) {
-      existingCart[existingItemIndex].quantity += quantity;
-    } else {
-      existingCart.push(cartItem);
+  
+    try {
+      const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
+  
+      if (existingItemIndex !== -1) {
+        const newQuantity = existingCart[existingItemIndex].quantity + quantity;
+        existingCart[existingItemIndex].quantity = newQuantity;
+        existingCart[existingItemIndex].total = newQuantity * product.price;
+      } else {
+        existingCart.push(cartItem);
+      }
+  
+      localStorage.setItem('cart', JSON.stringify(existingCart));
+  
+      const messageElement = document.getElementById('success-message');
+      if (messageElement) {
+        messageElement.classList.remove('hidden');
+        setTimeout(() => {
+          messageElement.classList.add('hidden');
+        }, 3000);
+      }
+    } catch (error) {
+      console.error('Error adding to cart:', error);
     }
-
-    localStorage.setItem('cart', JSON.stringify(existingCart));
-    alert('Produk berhasil ditambahkan ke keranjang!');
   };
-
 
   return (
     <div className="flex min-h-screen">
@@ -190,8 +204,15 @@ const DetailProduct = () => {
                   >
                     + Keranjang
                   </button>
-                </div>
 
+
+                </div>
+                <p
+                  id="success-message"
+                  className="hidden text-green-600 text-xs pt-2 mt-2 transition-all duration-300"
+                >
+                Berhasil ditambahkan ke keranjang
+                </p>
 
               </div>
             </div>
