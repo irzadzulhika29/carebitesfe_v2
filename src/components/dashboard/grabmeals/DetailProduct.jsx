@@ -40,8 +40,14 @@ const DetailProduct = () => {
   };
 
   const handlePurchase = () => {
-    navigate(`/payment/${product.id}`, { state: { total } });
-  };
+    navigate(`/payment/${product.id}`, { 
+        state: { 
+            total,
+            quantity // Pass quantity state to GrandProduct
+        } 
+    });
+};
+
 
   useEffect(() => {
     fetch('/productData.json')

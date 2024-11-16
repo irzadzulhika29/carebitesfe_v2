@@ -33,7 +33,20 @@ const CharityCampaignForm = () => {
                 <div className="flex-grow">
                     <Navbar />
                     <h1 className="mt-5 text-[#45c517] mx-10 text-2xl font-bold">Charity Campaign</h1>
-
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="50"
+                        height="50"
+                        fill="currentColor"
+                        className="text-green-500 hover:cursor-pointer mx-10 bi bi-arrow-left-short"
+                        viewBox="0 0 16 16"
+                        onClick={() => window.history.back()}
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"
+                        />
+                    </svg>
                     <div className="mt-5 p-3 rounded-md bg-white mb-5 shadow-md mx-10 flex min-h-screen flex-col gap-5">
                         <h1 className='text-xl text-[#45c517] font-semibold'>Informasi Campaign</h1>
                         <form className='flex flex-col gap-5' action="">
