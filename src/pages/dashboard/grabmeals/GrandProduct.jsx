@@ -9,7 +9,6 @@ const GrandProduct = () => {
     const { cartItems, total: cartTotal } = location.state || {};
     const [product, setProduct] = useState(null);
     const [total, setTotal] = useState(0);
-    // Add quantity from location state
     const quantity = location.state?.quantity || 1;
 
     function formatPrice(price) {
@@ -95,8 +94,6 @@ const GrandProduct = () => {
                                     ))
                                 ) : (
 
-
-                                    // Render single product
                                     <div>
                                         <div className='flex gap-3 items-center'>
                                             <img

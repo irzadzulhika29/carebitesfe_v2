@@ -70,13 +70,23 @@ const ShareMealsForm = ({
         {/* Input Nama Produk */}
         <div className="flex flex-col">
           <label>Nama Produk</label>
-          <input
-            className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-            type="text"
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
-            placeholder="Nama Produk"
-          />
+          <div className="relative">
+            <input
+              className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2 w-full"
+              type="text"
+              value={productName}
+              onChange={(e) => {
+                if (e.target.value.length <= 23) {
+                  setProductName(e.target.value);
+                }
+              }}
+              maxLength={23}
+              placeholder="Nama Produk"
+            />
+            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-500">
+              {productName.length}/23
+            </span>
+          </div>
         </div>
 
         <div className="flex flex-col">
