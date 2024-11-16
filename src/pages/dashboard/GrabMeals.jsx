@@ -6,7 +6,6 @@ import CategoryCard from "../../components/dashboard/CategoryCard";
 import { motion } from 'framer-motion';
 
 const GrabMeals = () => {
-  // State Management
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 

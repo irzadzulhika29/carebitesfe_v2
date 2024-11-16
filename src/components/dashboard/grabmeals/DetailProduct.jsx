@@ -4,11 +4,44 @@ import Sidebar from "../../dashboard/Sidebar";
 import Navbar from "../../dashboard/Navbar";
 
 const DetailProduct = () => {
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [total, setTotal] = useState(0);
   const { id } = useParams();
   const navigate = useNavigate();
-  const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1); // Default pembelian 1
-  const [total, setTotal] = useState(0); // Total harga
+
+  // Plain JavaScript functions for quantity management
+  function handleQuantityChange(currentQty, stock, isIncrease, price) {
+    let newQty;
+
+    if (isIncrease) {
+      newQty = currentQty < stock ? currentQty + 1 : currentQty;
+    } else {
+      newQty = currentQty > 1 ? currentQty - 1 : currentQty;
+    }
+
+    return {
+      quantity: newQty,
+      total: newQty * price
+    };
+  }
+
+  // React component handlers
+  const handleIncrease = () => {
+    const result = handleQuantityChange(quantity, product.stok, true, product.price);
+    setQuantity(result.quantity);
+    setTotal(result.total);
+  };
+
+  const handleDecrease = () => {
+    const result = handleQuantityChange(quantity, product.stok, false, product.price);
+    setQuantity(result.quantity);
+    setTotal(result.total);
+  };
+
+  const handlePurchase = () => {
+    navigate(`/payment/${product.id}`, { state: { total } });
+  };
 
   useEffect(() => {
     fetch('/productData.json')
@@ -17,34 +50,39 @@ const DetailProduct = () => {
         const foundProduct = data.find((item) => item.id === parseInt(id, 10));
         setProduct(foundProduct);
         if (foundProduct) {
-          setTotal(foundProduct.price * 1); // Default total = harga x 1
+          setTotal(foundProduct.price * quantity);
         }
-      })
-      .catch((error) => console.error('Error fetching data:', error));
+      });
   }, [id]);
 
-  const handleIncrease = () => {
-    if (quantity < product.stok) {
-      const newQuantity = quantity + 1;
-      setQuantity(newQuantity);
-      setTotal(newQuantity * product.price);
+
+  if (!product) {
+    return <p>Loading...</p>;
+  }
+
+
+  const handleAddToCart = () => {
+    const cartItem = {
+      id: product.id,
+      productName: product.productName,
+      price: product.price,
+      image_url: product.image_url,
+      quantity: quantity
+    };
+
+    const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
+
+    if (existingItemIndex !== -1) {
+      existingCart[existingItemIndex].quantity += quantity;
+    } else {
+      existingCart.push(cartItem);
     }
+
+    localStorage.setItem('cart', JSON.stringify(existingCart));
+    alert('Produk berhasil ditambahkan ke keranjang!');
   };
 
-  const handleDecrease = () => {
-    if (quantity > 1) {
-      const newQuantity = quantity - 1;
-      setQuantity(newQuantity);
-      setTotal(newQuantity * product.price);
-    }
-  };
-
-  const handlePurchase = () => {
-    // Kirim quantity sebagai state ke halaman Payment
-    navigate(`/payment/${id}`, { state: { quantity } });
-  };
-
-  if (!product) return <p>Loading...</p>;
 
   return (
     <div className="flex min-h-screen">
@@ -69,8 +107,8 @@ const DetailProduct = () => {
 
           <section className="min-h-screen mx-10">
             <div className="flex mt-5 gap-5 justify-between">
-              <div className="flex gap-10 p-5 shadow-md rounded-xl min-h-96 bg-white">
-                {/* Produk */}
+              <div className="flex gap-10 p-5 shadow-md w-[70%] rounded-xl min-h-96 bg-white">
+                {/* Product */}
                 <div className="flex flex-col min-w-48 gap-5">
                   <img
                     src={product.image_url}
@@ -106,13 +144,13 @@ const DetailProduct = () => {
                 </div>
               </div>
 
-              {/* Pembayaran */}
-              <div className="flex-1 max-w-72 max-h-64 rounded-xl p-5 bg-white shadow-md flex flex-col">
+              {/* Payment */}
+              <div className="flex-1 max-h-64 rounded-xl p-5 bg-white shadow-md flex flex-col">
                 <h1 className="font-bold text-lg mb-4">Jumlah pembelian</h1>
 
-                {/* Kontrol Jumlah */}
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center border rounded-lg py-2 px-3">
+                {/* Quantity Control */}
+                <div className="flex justify-between items-center mb-3">
+                  <div className="flex items-center border rounded-lg py-1 px-3">
                     <button
                       onClick={handleDecrease}
                       className="text-green-600 text-2xl font-bold px-2"
@@ -138,18 +176,23 @@ const DetailProduct = () => {
                   </span>
                 </div>
 
-                {/* Tombol */}
+                {/* Buttons */}
                 <div className="flex justify-between gap-2">
                   <button
                     onClick={handlePurchase}
-                    className="bg-[#45c517] hover:bg-green-600 w-28 text-white px-3 py-1 rounded-lg"
+                    className="bg-[#45c517] text-sm py-2 hover:bg-green-600 w-28 text-white px-3 rounded-lg"
                   >
                     Beli
                   </button>
-                  <button className="border w-28 border-green-600 py-1 text-green-600 px-3 rounded-lg">
+                  <button
+                    onClick={handleAddToCart}
+                    className="hover:bg-green-50 text-sm border py-2 w-28 border-green-600 text-green-600 px-3 rounded-lg"
+                  >
                     + Keranjang
                   </button>
                 </div>
+
+
               </div>
             </div>
           </section>
