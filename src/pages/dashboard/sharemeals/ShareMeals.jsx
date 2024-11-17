@@ -1,23 +1,11 @@
-import { useState } from "react";
 import Sidebar from "../../../components/dashboard/Sidebar";
 import Navbar from "../../../components/dashboard/Navbar";
-import ShareMealsForm from "../../../components/dashboard/sharemeals/ShareMealsForm";
-import kotaData from "../../../assets/sharemeals/kotaData.json";
 import { motion } from "framer-motion";
 import ManagementShareMeals from "../../../components/dashboard/sharemeals/ManagementShareMeals";
+import { Link } from 'react-router-dom';
 
 const ShareMeals = () => {
-  const [productName, setProductName] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [stock, setStock] = useState(0);
-  const [price, setPrice] = useState(""); // Tambahkan state untuk harga
-  const [productPhoto, setProductPhoto] = useState("");
-  const [pickupLocation, setPickupLocation] = useState("");
-  const [selectedKota, setSelectedKota] = useState("");
-  const [selectedKecamatan, setSelectedKecamatan] = useState("");
-  const [selectedKelurahan, setSelectedKelurahan] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+
 
   return (
     <motion.div
@@ -48,35 +36,24 @@ const ShareMeals = () => {
           </svg>
 
           <div className="mt-5 mx-10 flex min-h-screen flex-col gap-5">
-            <ManagementShareMeals />
+            {/* kelola produk */}
+            <section>
+              <h1 className="mb-5 text-xl font-semibold text-[#45c517]">Produk yang anda bagikan</h1>
+              <div className="flex gap-4">
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <ManagementShareMeals key={index} />
+                ))}
+              </div>
+            </section>
 
-            <ShareMealsForm
-              productName={productName}
-              setProductName={setProductName}
-              productDescription={productDescription}
-              setProductDescription={setProductDescription}
-              stock={stock}
-              increment={() => setStock(stock + 1)}
-              decrement={() => setStock(stock > 0 ? stock - 1 : 0)}
-              handleInputChange={(e) => setStock(Number(e.target.value))}
-              price={price}
-              setPrice={setPrice}
-              productPhoto={productPhoto}
-              setProductPhoto={setProductPhoto}
-              pickupLocation={pickupLocation}
-              setPickupLocation={setPickupLocation}
-              date={date}
-              setDate={setDate}
-              time={time}
-              setTime={setTime}
-              selectedKota={selectedKota}
-              setSelectedKota={setSelectedKota}
-              selectedKecamatan={selectedKecamatan}
-              setSelectedKecamatan={setSelectedKecamatan}
-              selectedKelurahan={selectedKelurahan}
-              setSelectedKelurahan={setSelectedKelurahan}
-              kotaData={kotaData}
-            />
+            <div className="mt-5">
+              <Link to="/share-meals/form">
+                <button className="bg-[#47cb18] hover:bg-green-600 text-white px-6 py-2 rounded-full">
+                  Bagikan Produk
+                </button>
+              </Link>
+            </div>
+
           </div>
         </div>
       </section>
