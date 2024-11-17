@@ -1,9 +1,25 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Navbar from '../../components/dashboard/Navbar';
 
 const PaymentMethod = () => {
+    const navigate = useNavigate(); // Add this
+
+    // Add new state
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [invoiceNumber, setInvoiceNumber] = useState('');
+
+    // Add function to generate random invoice number
+    const generateInvoiceNumber = () => {
+        const date = new Date();
+        const random = Math.floor(Math.random() * 10000);
+        return `INV/${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate()}/${random}`;
+    };
+
+
+
+
     const location = useLocation();
     const { total } = location.state || {};
 
@@ -50,6 +66,12 @@ const PaymentMethod = () => {
     // Fungsi untuk menangani perubahan metode pembayaran
     const handleSelectMethod = (method) => {
         setSelectedMethod(method);
+    };
+
+    // Update handleConfirmPayment
+    const handleConfirmPayment = () => {
+        setInvoiceNumber(generateInvoiceNumber());
+        setShowConfirmation(true);
     };
 
     return (
@@ -182,13 +204,44 @@ const PaymentMethod = () => {
                                     </div>
                                 </div>
 
-                                <div className="hover:cursor-pointer hover:bg-green-600 bg-[#45c517] p-1 py-2 text-center rounded-full">
+                                <div
+                                    onClick={handleConfirmPayment}
+                                    className="hover:cursor-pointer hover:bg-green-600 bg-[#45c517] p-1 py-2 text-center rounded-full"
+                                >
                                     <h1 className="text-white text-base font-semibold">Konfirmasi Pembayaran</h1>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </div>
+
+                {/* Payment Success Popup */}
+                {showConfirmation && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                        <div className="bg-white rounded-xl p-8 w-[400px] text-center">
+                            <div className="flex justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <h2 className="text-2xl font-bold text-gray-800 mb-4">Pembayaran Berhasil!</h2>
+                            <p className="text-gray-600 mb-4">Terima kasih atas pembayaran Anda</p>
+                            <div className="bg-gray-50 p-4 rounded-lg mb-6">
+                                <p className="text-sm text-gray-600 mb-2">Nomor Invoice:</p>
+                                <p className="text-lg font-bold text-gray-800">{invoiceNumber}</p>
+                            </div>
+                            <button
+                                onClick={() => {
+                                    setShowConfirmation(false);
+                                    navigate('/grab-meals'); // Navigate to GrabMeals page
+                                }}
+                                className="bg-[#45c517] text-white px-6 py-2 rounded-full hover:bg-green-600 transition duration-300"
+                            >
+                                Kembali
+                            </button>
+                        </div>
+                    </div>
+                )}
             </section>
         </div>
     );

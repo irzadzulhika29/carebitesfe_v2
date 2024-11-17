@@ -3,9 +3,11 @@ import Navbar from "../../../components/dashboard/Navbar";
 import CartMealsItem from "../../../components/dashboard/cartmeals/CartMealsItem";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CartMeals = () => {
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
 
   // Existing functions
   function getCartFromStorage() {
@@ -36,6 +38,9 @@ const CartMeals = () => {
   }, []);
 
   const total = calculateTotal(cartItems);
+  const handleItemClick = (productId) => {
+    navigate(`/product/${productId}`);
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -59,44 +64,54 @@ const CartMeals = () => {
             />
           </svg>
 
-          <section className="min-h-screen mx-10 my-5 rounded-md bg-white shadow-md p-5">
+          <section className="min-h-screen mx-5 rounded-md p-5">
             {cartItems.length === 0 ? (
               <p className="text-center text-gray-500">Keranjang masih kosong</p>
             ) : (
-              <>
-                {cartItems.map((item) => (
-                  <CartMealsItem
-                    key={item.id}
-                    item={item}
-                    onRemove={removeItem}
-                  />
-                ))}
-
-                <div className="mt-5 flex justify-between items-center">
-                  <h2 className="font-bold">Total:</h2>
-                  <p className="text-xl font-bold">
-                    {formatPrice(total)}
-                  </p>
+              <div className="flex w-full gap-8">
+                {/* Left side - Cart Items */}
+                <div className="flex-1 flex flex-col gap-4">
+                  {cartItems.map((item) => (
+                    <CartMealsItem
+                      key={item.id}
+                      item={item}
+                      onRemove={removeItem}
+                      onClick={() => handleItemClick(item.id)}
+                    />
+                  ))}
                 </div>
 
-                {/* Add Checkout Button */}
-                <div className="mt-5 flex justify-end">
-                  <Link
-                    to="/payment/checkout"
-                    state={{
-                      cartItems,
-                      total,
-                      quantity: cartItems.reduce((sum, item) => sum + item.quantity, 0)
-                    }}
-                  >
-                    <button className="bg-[#45c517] hover:bg-green-600 text-white px-6 py-2 rounded-full">
-                      Checkout
-                    </button>
-                  </Link>
+                {/* Right side - Checkout Summary */}
+                <div className="shadow-md w-1/3 h-fit bg-white rounded-lg p-4">
+                  <h2 className="text-md text-[#45c517] font-semibold mb-4">Ringkasan Pesanan</h2>
+
+                  <div className="flex justify-between items-center border-t pt-4">
+                    <h2 className="font-bold">Total:</h2>
+                    <p className="text-md font-bold">
+                      {formatPrice(total)}
+                    </p>
+                  </div>
+
+                  <div className="mt-5">
+                    <Link
+                      to="/payment/checkout"
+                      state={{
+                        cartItems,
+                        total,
+                        quantity: cartItems.reduce((sum, item) => sum + item.quantity, 0)
+                      }}
+                      className="block"
+                    >
+                      <button className="w-full bg-[#45c517] hover:bg-green-600 text-white px-6 py-2 rounded-full">
+                        Checkout
+                      </button>
+                    </Link>
+                  </div>
                 </div>
-              </>
+              </div>
             )}
           </section>
+
         </div>
       </section>
     </div>
