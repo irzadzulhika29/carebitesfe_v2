@@ -47,9 +47,8 @@ const ShareMeals = () => {
               </div>
             </section>
 
-            <div className="fixed right-10 top-2/3 transform -translate-y-1/2 w-48">
+            <div className="fixed right-10 top-[85%] transform -translate-y-1/2 w-48">
               <Link to="/share-meals/form">
-                <img className="w-full " src={WavingImage} alt="" />
                 <button className="bg-[#47cb18] hover:bg-green-600 text-white px-6 py-2 rounded-full">
                   Bagikan Produk
                 </button>
