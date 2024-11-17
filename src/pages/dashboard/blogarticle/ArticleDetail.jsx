@@ -5,7 +5,7 @@ import Navbar from "../../../components/dashboard/Navbar";
 import MiniCardArticle from "../../../components/dashboard/article/MiniCardArticle";
 
 const ArticleDetail = () => {
-    const { id } = useParams(); 
+    const { id } = useParams();
     const article = articles.find(article => article.id === parseInt(id, 10));
 
     if (!article) {
@@ -35,8 +35,9 @@ const ArticleDetail = () => {
                     </svg>
 
                     <section className="min-h-screen mx-10 my-3">
-                        <div className="flex gap-5">
-                            <div className="p-8 rounded-md bg-white shadow-md w-[75%]">
+                        <div className="flex gap-5 relative">
+                            {/* Main Article Content - Scrollable */}
+                            <div className="p-8 rounded-md bg-white shadow-md w-[70%]">
                                 <p className="text-2xl font-bold">{article.title}</p>
                                 <div className="flex gap-3 items-center my-3">
                                     <img
@@ -61,9 +62,11 @@ const ArticleDetail = () => {
                                 </div>
                             </div>
 
+                            {/* Sticky Sidebar */}
                             <div className="w-[30%]">
-        
-                                <MiniCardArticle />
+                                <div className="sticky top-24 bg-white rounded-md">
+                                    <MiniCardArticle />
+                                </div>
                             </div>
                         </div>
                     </section>

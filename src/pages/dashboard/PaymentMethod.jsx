@@ -233,7 +233,7 @@ const PaymentMethod = () => {
                             <button
                                 onClick={() => {
                                     setShowConfirmation(false);
-                                    navigate('/grab-meals'); // Navigate to GrabMeals page
+                                    navigate(-1); // Navigate back to the previous page
                                 }}
                                 className="bg-[#45c517] text-white px-6 py-2 rounded-full hover:bg-green-600 transition duration-300"
                             >

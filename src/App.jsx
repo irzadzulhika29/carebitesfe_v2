@@ -19,6 +19,7 @@ import PaymentMethod from './pages/dashboard/PaymentMethod';
 import CharityTransaction from './pages/dashboard/charitycampaign/CharityTransaction';
 import CartMeals from './pages/dashboard/cartmeals/CartMeals';
 import ShareMealsForm from './pages/dashboard/sharemeals/ShareMealsForm'; //
+import EditProfil from './pages/dashboard/EditProfil';
 
 const App = () => {
   return (
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/payment-charity/:id" element={<PaymentMethod />} />
           <Route path="/charity-transaction/:id" element={<CharityTransaction />} />
           <Route path="/share-meals/form" element={<ShareMealsForm />} />
+          <Route path="/profil/edit-profil" element={<EditProfil />} />
         </Routes>
       </Router>
 
