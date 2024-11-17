@@ -3,6 +3,7 @@ import Navbar from "../../../components/dashboard/Navbar";
 import { motion } from "framer-motion";
 import ManagementShareMeals from "../../../components/dashboard/sharemeals/ManagementShareMeals";
 import { Link } from 'react-router-dom';
+import WavingImage from '../../../assets/img/waving.png';
 
 const ShareMeals = () => {
 
@@ -46,8 +47,9 @@ const ShareMeals = () => {
               </div>
             </section>
 
-            <div className="mt-5">
+            <div className="fixed right-10 top-2/3 transform -translate-y-1/2 w-48">
               <Link to="/share-meals/form">
+                <img className="w-full " src={WavingImage} alt="" />
                 <button className="bg-[#47cb18] hover:bg-green-600 text-white px-6 py-2 rounded-full">
                   Bagikan Produk
                 </button>
