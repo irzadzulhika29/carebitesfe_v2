@@ -20,13 +20,13 @@ const LoginPage = () => {
               <div className='relative'>
                 <input
                   className='p-2 rounded-xl border w-full'
-              
+
                   name="password"
                   placeholder='Password'
                 />
-              
+
               </div>
-              <Link className='bg-[#45c517] rounded-xl py-2 text-white hover:scale-105 duration-300 text-center' to="/home"><button>Login</button></Link>
+              <button className='bg-[#45c517] rounded-xl py-2 text-white hover:scale-105 duration-300 text-center'>Login</button>
             </form>
 
             <div className='mt-10 grid grid-cols-3 items-center text-gray-500'>

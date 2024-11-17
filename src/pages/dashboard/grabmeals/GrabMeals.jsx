@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Sidebar from "../../components/dashboard/Sidebar";
-import Navbar from "../../components/dashboard/Navbar";
-import ProductCard from "../../components/dashboard/grabmeals/ProductCard";
-import CategoryCard from "../../components/dashboard/CategoryCard";
+import Sidebar from "../../../components/dashboard/Sidebar";
+import Navbar from "../../../components/dashboard/Navbar";
+import ProductCard from "../../../components/dashboard/grabmeals/ProductCard";
+import CategoryCard from "../../../components/dashboard/CategoryCard";
 import { motion } from 'framer-motion';
 
 const GrabMeals = () => {

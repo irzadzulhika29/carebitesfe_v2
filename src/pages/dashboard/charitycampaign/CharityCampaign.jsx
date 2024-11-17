@@ -1,7 +1,7 @@
-import Sidebar from "../../components/dashboard/Sidebar";
-import Navbar from "../../components/dashboard/Navbar";
-import CharityCard from "../../components/dashboard/charitycampaign/CharityCard";
-import charityData from '../../assets/lembagasosial/lembagaSosialData.json';
+import Sidebar from "../../../components/dashboard/Sidebar";
+import Navbar from "../../../components/dashboard/Navbar";
+import CharityCard from "../../../components/dashboard/charitycampaign/CharityCard";
+import charityData from '../../../assets/lembagasosial/lembagaSosialData.json';
 import { Link } from "react-router-dom";
 
 const CharityCampaign = () => {

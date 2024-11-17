@@ -36,6 +36,7 @@ const ShareMealsForm = ({
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categoriesData, setCategoriesData] = useState([]);
 
+
   // Load data kategori dari file JSON
   useEffect(() => {
     fetch("/categoryList.json")
@@ -61,6 +62,21 @@ const ShareMealsForm = ({
     const newImages = [...images];
     newImages[index] = null;
     setImages(newImages);
+  };
+
+  const formatDate = (dateString) => {
+    const dateObj = new Date(dateString);
+    const year = dateObj.getFullYear();
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+    const day = dateObj.getDate().toString().padStart(2, '0');
+    return `${year}/${month}/${day}`;
+  };
+
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;  // YYYY-MM-DD
+    const formattedDate = formatDate(selectedDate);  // Format ke YYYY/MM/DD
+    setDate(selectedDate);  // Simpan dalam format default YYYY-MM-DD
+    // Jika Anda ingin menampilkan format yang berbeda, bisa simpan `formattedDate` di state terpisah
   };
 
   return (
@@ -243,10 +259,11 @@ const ShareMealsForm = ({
           <input
             className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
             type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
+            value={date}  // Tetap menggunakan format YYYY-MM-DD
+            onChange={handleDateChange}
           />
         </div>
+
 
         <div className="flex flex-col">
           <label>Jam Pengambilan</label>

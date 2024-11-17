@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import Sidebar from "../../components/dashboard/Sidebar";
-import Navbar from "../../components/dashboard/Navbar";
-import ShareMealsForm from "../../components/dashboard/sharemeals/ShareMealsForm";
-import kotaData from "../../assets/sharemeals/kotaData.json"; // Import JSON
-import { motion } from "framer-motion"; // Add this import
+import { useState } from "react";
+import Sidebar from "../../../components/dashboard/Sidebar";
+import Navbar from "../../../components/dashboard/Navbar";
+import ShareMealsForm from "../../../components/dashboard/sharemeals/ShareMealsForm";
+import kotaData from "../../../assets/sharemeals/kotaData.json";
+import { motion } from "framer-motion";
+import ManagementShareMeals from "../../../components/dashboard/sharemeals/ManagementShareMeals";
 
 const ShareMeals = () => {
   const [productName, setProductName] = useState("");
@@ -47,6 +48,8 @@ const ShareMeals = () => {
           </svg>
 
           <div className="mt-5 mx-10 flex min-h-screen flex-col gap-5">
+            <ManagementShareMeals />
+
             <ShareMealsForm
               productName={productName}
               setProductName={setProductName}

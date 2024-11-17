@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeDashboard from './pages/Dashboard/HomeDashboard';
-import ShareMeals from './pages/dashboard/ShareMeals';
-import GrabMeals from './pages/dashboard/GrabMeals';
-import CharityCampaign from './pages/dashboard/CharityCampaign'; // Correct spelling
-import BlogArtikel from './pages/dashboard/BlogArtikel';
-import ShareYourActivity from './pages/dashboard/ShareYourActivity';
+import ShareMeals from './pages/dashboard/sharemeals/ShareMeals';
+import GrabMeals from './pages/dashboard/grabmeals/GrabMeals';
+import CharityCampaign from './pages/dashboard/charitycampaign/CharityCampaign';
+import BlogArtikel from './pages/dashboard/blogarticle/BlogArtikel';
+import ShareYourActivity from './pages/dashboard/shareactivity/ShareYourActivity';
 import ProductDetailPage from './components/dashboard/grabmeals/DetailProduct';
 import HomeLanding from './pages/landing-page/HomeLanding';
 import LoginPage from './pages/landing-page/LoginPage';

@@ -48,9 +48,16 @@ const Navbar = ({ showSearchBar }) => {
       )}
 
       <ul className=" flex items-center gap-5">
+
         <NavLink
           to="/cart"
-          className={({ isActive }) => `hover:cursor-pointer ${isActive ? 'text-[#45c517]' : 'text-gray-500'}`}
+          className={({ isActive }) => `
+    hover:cursor-pointer 
+    hover:text-[#45c517] 
+    transition-colors 
+    duration-200 
+    ${isActive ? 'text-[#45c517]' : 'text-gray-500'}
+  `}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -63,8 +70,6 @@ const Navbar = ({ showSearchBar }) => {
             <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
           </svg>
         </NavLink>
-
-
 
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="gray">
           <path d="M18 10C18 6.68629 15.3137 4 12 4C8.68629 4 6 6.68629 6 10V18H18V10ZM20 18.6667L20.4 19.2C20.5657 19.4209 20.5209 19.7343 20.3 19.9C20.2135 19.9649 20.1082 20 20 20H4C3.72386 20 3.5 19.7761 3.5 19.5C3.5 19.3918 3.53509 19.2865 3.6 19.2L4 18.6667V10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10V18.6667ZM9.5 21H14.5C14.5 22.3807 13.3807 23.5 12 23.5C10.6193 23.5 9.5 22.3807 9.5 21Z"></path>

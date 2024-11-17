@@ -1,9 +1,9 @@
 // HomeDashboard.jsx
-import Sidebar from "../../components/dashboard/Sidebar";
-import Navbar from "../../components/dashboard/Navbar";
-import ArticleCard from "../../components/dashboard/article/ArticleCard";
+import Sidebar from "../../../components/dashboard/Sidebar";
+import Navbar from "../../../components/dashboard/Navbar";
+import ArticleCard from "../../../components/dashboard/article/ArticleCard";
 import { Link } from "react-router-dom";
-import articleData from "../../assets/blogarticle/articleData.json";
+import articleData from "../../../assets/blogarticle/articleData.json";
 
 const BlogArtikel = () => {
     return (
