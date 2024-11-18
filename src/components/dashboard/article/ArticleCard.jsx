@@ -1,6 +1,6 @@
 const ArticleCard = ({ article }) => {
     return (
-        <div className='hover:cursor-pointer hover:scale-110 transition duration-300 bg-white p-3 shadow-md w-72 h-72 rounded-md overflow-hidden'>
+        <div className='hover:cursor-pointer hover:scale-110 transition duration-300 bg-white p-3 shadow-md w-72     h-72 rounded-md overflow-hidden'>
             <div className="flex items-center gap-2 mb-3">
                 <div className="border-2 border-[#45c517] rounded-full">
                     <img

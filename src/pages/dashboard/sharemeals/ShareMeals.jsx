@@ -1,12 +1,24 @@
+// ShareMeals.jsx
+import { useEffect, useState } from 'react';
 import Sidebar from "../../../components/dashboard/Sidebar";
 import Navbar from "../../../components/dashboard/Navbar";
 import { motion } from "framer-motion";
-import ManagementShareMeals from "../../../components/dashboard/sharemeals/ManagementShareMeals";
+import CardShareMeals from "../../../components/dashboard/sharemeals/CardShareMeals";
 import { Link } from 'react-router-dom';
-import WavingImage from '../../../assets/img/waving.png';
 
 const ShareMeals = () => {
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+
+    fetch('/productData.json')
+      .then(response => response.json())
+      .then(data => {
+        setProducts(data.filter(product => product.category === 'Makanan'));
+      })
+      .catch(error => console.error('Error fetching product data:', error));
+    
+  }, []);
 
   return (
     <motion.div
@@ -37,12 +49,12 @@ const ShareMeals = () => {
           </svg>
 
           <div className="mt-5 mx-10 flex min-h-screen flex-col gap-5">
-            {/* kelola produk */}
+            {/* Kelola produk */}
             <section>
               <h1 className="mb-5 text-xl font-semibold text-[#45c517]">Produk yang anda bagikan</h1>
-              <div className="flex gap-4">
-                {Array.from({ length: 4 }).map((_, index) => (
-                  <ManagementShareMeals key={index} />
+              <div className="flex-wrap justify-between flex gap-5">
+                {products.map(product => (
+                  <CardShareMeals key={product.id} product={product} />
                 ))}
               </div>
             </section>

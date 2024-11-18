@@ -105,6 +105,7 @@ const EditProfil = () => {
                                     </label>
                                     <div className="relative">
                                         <input
+                                            value={userData.user.username}
                                             id="username"
                                             name="username"
                                             type="text"
@@ -136,6 +137,7 @@ const EditProfil = () => {
                                     </label>
                                     <div className="relative">
                                         <input
+                                            value={userData.user.email}
                                             id="username"
                                             name="username"
                                             type="text"
@@ -167,6 +169,7 @@ const EditProfil = () => {
                                     </label>
                                     <div className="relative">
                                         <input
+                                            value={userData.user.phone_number}
                                             id="username"
                                             name="username"
                                             type="text"
@@ -198,6 +201,7 @@ const EditProfil = () => {
                                     </label>
                                     <div className="relative">
                                         <input
+                                            value={userData.user.password}
                                             id="username"
                                             name="username"
                                             type="text"

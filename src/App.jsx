@@ -20,7 +20,13 @@ import CharityTransaction from './pages/dashboard/charitycampaign/CharityTransac
 import CartMeals from './pages/dashboard/cartmeals/CartMeals';
 import ShareMealsForm from './pages/dashboard/sharemeals/ShareMealsForm'; //
 import EditProfil from './pages/dashboard/EditProfil';
+import UpdateShareMeals from './components/dashboard/sharemeals/UpdateShareMeals';
 
+
+import AdminDashboard from './pages/dashboard/admin/AdminDashboard';
+import ShareMealsVerif from './pages/dashboard/admin/ShareMealsVerif';
+import CampaignVerif from './pages/dashboard/admin/charitycampaign/CampaignVerif';
+import CampaignDetailVerif from './pages/dashboard/admin/charitycampaign/CampaignDetailVerif';
 const App = () => {
   return (
     <div>
@@ -49,6 +55,13 @@ const App = () => {
           <Route path="/charity-transaction/:id" element={<CharityTransaction />} />
           <Route path="/share-meals/form" element={<ShareMealsForm />} />
           <Route path="/profil/edit-profil" element={<EditProfil />} />
+          <Route path="/share-meals/update/:id" element={<UpdateShareMeals />} />
+
+
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/share-meals-verif" element={<ShareMealsVerif />} />
+          <Route path="/campaign-verif" element={<CampaignVerif />} />
+          <Route path="/campaign-detail-verif/:id" element={<CampaignDetailVerif />} />
         </Routes>
       </Router>
 
