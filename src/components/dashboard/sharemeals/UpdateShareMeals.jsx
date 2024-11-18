@@ -1,4 +1,4 @@
-// ShareMealsForm.jsx
+
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar from "../../../components/dashboard/Sidebar";
@@ -9,6 +9,7 @@ import categoryList from '../../../../public/categoryList.json';  // Adjust path
 
 
 const UpdateShareMeals = () => {
+    // 1. State Declarations
     const [formData, setFormData] = useState({
         productName: "",
         description: "",
@@ -16,16 +17,12 @@ const UpdateShareMeals = () => {
         price: "",
         images: Array(5).fill(null),
         category: "",
-        location: {
-            kota: "",
-            kecamatan: "",
-            kelurahan: "",
-            detail: ""
-        },
-        pickup: {
-            date: "",
-            time: ""
-        }
+        kota: "",
+        kecamatan: "",
+        kelurahan: "",
+        detail: "",
+        date: "",
+        time: ""
     });
     const [categoriesData, setCategoriesData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -37,10 +34,33 @@ const UpdateShareMeals = () => {
     const { id } = useParams();
 
     // 3. Derived State
-    const kecamatanData = kotaData[formData.location.kota] ?? {};
-    const kelurahanData = kecamatanData[formData.location.kecamatan] ?? [];
+    const kecamatanData = kotaData[formData.kota] ?? {};
+    const kelurahanData = kecamatanData[formData.kecamatan] ?? [];
 
-    // 4. Effects
+    // 4. Utility Functions
+    const formatTimeForInput = (timeString) => {
+        if (!timeString) return '';
+        return timeString.replace('.', ':');
+    };
+
+    const formatTimeForDisplay = (timeString) => {
+        if (!timeString) return '';
+        return timeString.replace(':', '.');
+    };
+
+    const formatDateForInput = (dateString) => {
+        if (!dateString) return '';
+        const [day, month, year] = dateString.split('-');
+        return `${year}-${month}-${day}`;
+    };
+
+    const formatDateForDisplay = (dateString) => {
+        if (!dateString) return '';
+        const [year, month, day] = dateString.split('-');
+        return `${day}-${month}-${year}`;
+    };
+
+    // 5. Effects
     useEffect(() => {
         try {
             setIsLoading(true);
@@ -62,17 +82,19 @@ const UpdateShareMeals = () => {
                     product.address?.split(", ") ?? [];
 
                 setFormData({
+                    ...formData,
                     productName: product.productName ?? "",
                     description: product.description ?? "",
                     stock: product.stok ?? 0,
                     price: product.price?.toString() ?? "",
                     images: [product.image_url, ...Array(4).fill(null)],
                     category: product.category ?? "",
-                    location: { kota, kecamatan, kelurahan, detail },
-                    pickup: {
-                        date: product.date ?? "",
-                        time: product.timeOver ?? ""
-                    }
+                    kota,
+                    kecamatan,
+                    kelurahan,
+                    detail,
+                    date: product.date ?? "",
+                    time: formatTimeForDisplay(product.timeOver) ?? "",
                 });
             } catch (err) {
                 setErrorMessage(err.message);
@@ -83,7 +105,7 @@ const UpdateShareMeals = () => {
         loadProduct();
     }, [id]);
 
-    // 5. Event Handlers
+    // 6. Event Handlers
     const updateField = (field, value) => {
         setFormData(prev => ({
             ...prev,
@@ -106,28 +128,21 @@ const UpdateShareMeals = () => {
         reader.readAsDataURL(file);
     };
 
-    const handleDateChange = (date) => {
-        const today = new Date().toISOString().split('T')[0];
-        if (date < today) {
-            alert("Tanggal tidak boleh kurang dari hari ini");
-            return;
-        }
-        updateField('pickup', { ...formData.pickup, date });
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const requiredFields = ['productName', 'description', 'price', 'category'];
         const missingFields = requiredFields.some(field => !formData[field]);
 
-        if (missingFields || !formData.location.detail || !formData.pickup.date || !formData.pickup.time) {
+        if (missingFields || !formData.detail || !formData.date || !formData.time) {
             alert("Mohon lengkapi semua data yang diperlukan.");
             return;
         }
 
         try {
-            const fullAddress = Object.values(formData.location).filter(Boolean).join(", ");
+            const fullAddress = [formData.kelurahan, formData.kecamatan, formData.kota, formData.detail]
+                .filter(Boolean)
+                .join(", ");
             const updatedProduct = {
                 id: +id,
                 ...formData,
@@ -135,8 +150,8 @@ const UpdateShareMeals = () => {
                 price: +formData.price,
                 image_url: formData.images[0],
                 address: fullAddress,
-                date: formData.pickup.date,
-                timeOver: formData.pickup.time,
+                date: formData.date,
+                timeOver: formData.time,
                 updated_at: new Date().toISOString()
             };
 
@@ -149,10 +164,9 @@ const UpdateShareMeals = () => {
         }
     };
 
-    // 6. Render Logic
+    // 7. Render Conditions
     if (isLoading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
     if (errorMessage) return <div className="flex justify-center items-center min-h-screen text-red-500">{errorMessage}</div>;
-
     return (
         <div className="flex min-h-screen">
             <Sidebar />
@@ -275,12 +289,12 @@ const UpdateShareMeals = () => {
                                         ) : error ? (
                                             <option>Error: {error}</option>
                                         ) : (
-                                            categoriesData.map((category) => (
+                                            categoriesData.map((categoryItem) => (
                                                 <option
-                                                    key={category?.id}
-                                                    value={category?.name}
+                                                    key={categoryItem?.id}
+                                                    value={categoryItem?.name}
                                                 >
-                                                    {category?.name}
+                                                    {categoryItem?.name}
                                                 </option>
                                             ))
                                         )}
@@ -292,13 +306,17 @@ const UpdateShareMeals = () => {
                                     <label>Pilih Kota</label>
                                     <select
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-                                        value={formData.location.kota}
-                                        onChange={(e) => updateField('location', { ...formData.location, kota: e.target.value, kecamatan: '', kelurahan: '' })}
+                                        value={formData.kota}
+                                        onChange={(e) => {
+                                            updateField('kota', e.target.value);
+                                            updateField('kecamatan', '');
+                                            updateField('kelurahan', '');
+                                        }}
                                         required
                                     >
                                         <option value="">Pilih Kota</option>
-                                        {Object.keys(kotaData).map(kota => (
-                                            <option key={kota} value={kota}>{kota}</option>
+                                        {Object.keys(kotaData).map(kotaOption => (
+                                            <option key={kotaOption} value={kotaOption}>{kotaOption}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -307,14 +325,17 @@ const UpdateShareMeals = () => {
                                     <label>Pilih Kecamatan</label>
                                     <select
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-                                        value={formData.location.kecamatan}
-                                        onChange={(e) => updateField('location', { ...formData.location, kecamatan: e.target.value, kelurahan: '' })}
-                                        disabled={!formData.location.kota}
+                                        value={formData.kecamatan}
+                                        onChange={(e) => {
+                                            updateField('kecamatan', e.target.value);
+                                            updateField('kelurahan', '');
+                                        }}
+                                        disabled={!formData.kota}
                                         required
                                     >
                                         <option value="">Pilih Kecamatan</option>
-                                        {Object.keys(kecamatanData).map(kecamatan => (
-                                            <option key={kecamatan} value={kecamatan}>{kecamatan}</option>
+                                        {Object.keys(kecamatanData).map(kecamatanOption => (
+                                            <option key={kecamatanOption} value={kecamatanOption}>{kecamatanOption}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -323,14 +344,14 @@ const UpdateShareMeals = () => {
                                     <label>Pilih Kelurahan</label>
                                     <select
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-                                        value={formData.location.kelurahan}
-                                        onChange={(e) => updateField('location', { ...formData.location, kelurahan: e.target.value })}
-                                        disabled={!formData.location.kecamatan}
+                                        value={formData.kelurahan}
+                                        onChange={(e) => updateField('kelurahan', e.target.value)}
+                                        disabled={!formData.kecamatan}
                                         required
                                     >
                                         <option value="">Pilih Kelurahan</option>
-                                        {kelurahanData.map((kelurahan, index) => (
-                                            <option key={index} value={kelurahan}>{kelurahan}</option>
+                                        {kelurahanData.map((kelurahanOption, index) => (
+                                            <option key={index} value={kelurahanOption}>{kelurahanOption}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -340,8 +361,8 @@ const UpdateShareMeals = () => {
                                     <input
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
                                         type="text"
-                                        value={formData.location.detail}
-                                        onChange={(e) => updateField('location', { ...formData.location, detail: e.target.value })}
+                                        value={formData.detail}
+                                        onChange={(e) => updateField('detail', e.target.value)}
                                         placeholder="Alamat Lengkap"
                                         required
                                     />
@@ -353,8 +374,8 @@ const UpdateShareMeals = () => {
                                     <input
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
                                         type="date"
-                                        value={formData.pickup.date}
-                                        onChange={(e) => handleDateChange(e.target.value)}
+                                        value={formatDateForInput(formData.date)}
+                                        onChange={(e) => updateField('date', formatDateForDisplay(e.target.value))}
                                         required
                                     />
                                 </div>
@@ -364,8 +385,8 @@ const UpdateShareMeals = () => {
                                     <input
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
                                         type="time"
-                                        value={formData.pickup.time}
-                                        onChange={(e) => updateField('pickup', { ...formData.pickup, time: e.target.value })}
+                                        value={formatTimeForInput(formData.time)}
+                                        onChange={(e) => updateField('time', formatTimeForDisplay(e.target.value))}
                                         required
                                     />
                                 </div>
@@ -381,5 +402,6 @@ const UpdateShareMeals = () => {
         </div>
     );
 };
+
 
 export default UpdateShareMeals
