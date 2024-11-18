@@ -11,7 +11,8 @@
         "timeOver": "20.00",
         "description": "Ayam bakar madu adalah hidangan ayam bakar khas yang memadukan cita rasa manis dan gurih. Dibuat dengan bumbu rempah seperti bawang putih, bawang merah, dan jahe, yang kemudian dicampur dengan kecap manis dan madu sebagai bahan utama. Proses pembakaran yang perlahan di atas bara api memastikan bumbu meresap ke dalam daging, menghasilkan aroma dan rasa yang menggugah selera.",
         "category": "Makanan",
-        "stok": 12
+        "stok": 12,
+        "date" : "29-11-2024"
     },
     {
         "id": 2,

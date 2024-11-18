@@ -5,6 +5,8 @@ import Sidebar from "../../../components/dashboard/Sidebar";
 import Navbar from "../../../components/dashboard/Navbar";
 import kotaData from "../../../assets/sharemeals/kotaData.json";
 import productData from "../../../../public/productData.json";
+import categoryList from '../../../../public/categoryList.json';  // Adjust path as needed
+
 
 const UpdateShareMeals = () => {
     const [formData, setFormData] = useState({
@@ -40,19 +42,14 @@ const UpdateShareMeals = () => {
 
     // 4. Effects
     useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                setIsLoading(true);
-                const response = await fetch('YOUR_API_ENDPOINT/categories');
-                const data = await response.json();
-                setCategoriesData(data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchCategories();
+        try {
+            setIsLoading(true);
+            setCategoriesData(categoryList);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
     }, []);
 
     useEffect(() => {
@@ -155,7 +152,7 @@ const UpdateShareMeals = () => {
     // 6. Render Logic
     if (isLoading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
     if (errorMessage) return <div className="flex justify-center items-center min-h-screen text-red-500">{errorMessage}</div>;
-    
+
     return (
         <div className="flex min-h-screen">
             <Sidebar />
