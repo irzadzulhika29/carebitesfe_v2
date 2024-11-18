@@ -27,8 +27,6 @@ const ShareMealsForm = () => {
   const [categoriesData, setCategoriesData] = useState([]);
 
   useEffect(() => {
-    // Load data kategori dari file JSON
-    // Jika sudah mengimpor categoryList, tidak perlu fetch lagi
     setCategoriesData(categoryList);
   }, []);
 
@@ -69,7 +67,6 @@ const ShareMealsForm = () => {
       return;
     }
 
-    // Proses penyimpanan data atau panggilan API ke backend di sini
 
     // Reset form setelah berhasil
     setProductName("");
@@ -85,7 +82,6 @@ const ShareMealsForm = () => {
     setDate("");
     setTime("");
 
-    // Navigasi kembali ke halaman sebelumnya atau halaman sukses
     navigate("/share-meals");
   };
 

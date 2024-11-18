@@ -1,164 +1,161 @@
 // ShareMealsForm.jsx
 import { useState, useEffect } from "react";
-import { useNavigate ,useParams} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar from "../../../components/dashboard/Sidebar";
 import Navbar from "../../../components/dashboard/Navbar";
 import kotaData from "../../../assets/sharemeals/kotaData.json";
-import categoryList from "../../../../public/categoryList.json";
 import productData from "../../../../public/productData.json";
 
 const UpdateShareMeals = () => {
-    const navigate = useNavigate();
-    const { id } = useParams();
+    const [formData, setFormData] = useState({
+        productName: "",
+        description: "",
+        stock: 0,
+        price: "",
+        images: Array(5).fill(null),
+        category: "",
+        location: {
+            kota: "",
+            kecamatan: "",
+            kelurahan: "",
+            detail: ""
+        },
+        pickup: {
+            date: "",
+            time: ""
+        }
+    });
+    const [categoriesData, setCategoriesData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
-    const [productName, setProductName] = useState("");
-    const [productDescription, setProductDescription] = useState("");
-    const [stock, setStock] = useState(0);
-    const [price, setPrice] = useState("");
-    const [images, setImages] = useState(Array(5).fill(null));
-    const [selectedCategory, setSelectedCategory] = useState("");
-    const [selectedKota, setSelectedKota] = useState("");
-    const [selectedKecamatan, setSelectedKecamatan] = useState("");
-    const [selectedKelurahan, setSelectedKelurahan] = useState("");
-    const [pickupLocation, setPickupLocation] = useState("");
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
-    const [categoriesData, setCategoriesData] = useState([]);
+    const [error, setError] = useState(null);
 
+    // 2. Hooks
+    const navigate = useNavigate();
+    const { id } = useParams();
+
+    // 3. Derived State
+    const kecamatanData = kotaData[formData.location.kota] ?? {};
+    const kelurahanData = kecamatanData[formData.location.kecamatan] ?? [];
+
+    // 4. Effects
     useEffect(() => {
-        const loadProductData = async () => {
+        const fetchCategories = async () => {
             try {
                 setIsLoading(true);
-                setCategoriesData(categoryList);
-
-                const product = productData.find(item => item.id === parseInt(id));
-                if (!product) {
-                    throw new Error("Produk tidak ditemukan");
-                }
-
-                // Parse address components
-                const addressParts = product.address?.split(", ") || [];
-                if (addressParts.length >= 4) {
-                    setSelectedKelurahan(addressParts[0]);
-                    setSelectedKecamatan(addressParts[1]);
-                    setSelectedKota(addressParts[2]);
-                    setPickupLocation(addressParts[3]);
-                } else {
-                    setPickupLocation(product.address || "");
-                }
-
-                setProductName(product.productName || "");
-                setProductDescription(product.description || "");
-                setStock(product.stok || 0);
-                setPrice(product.price?.toString() || "");
-                setImages([product.image_url, ...Array(4).fill(null)]);
-                setSelectedCategory(product.category || "");
-                setDate(product.date || "");
-                setTime(product.timeOver || "");
-
-                setErrorMessage("");
-            } catch (error) {
-                setErrorMessage(error.message);
-                console.error("Error loading product:", error);
+                const response = await fetch('YOUR_API_ENDPOINT/categories');
+                const data = await response.json();
+                setCategoriesData(data);
+            } catch (err) {
+                setError(err.message);
             } finally {
                 setIsLoading(false);
             }
         };
+        fetchCategories();
+    }, []);
 
-        loadProductData();
+    useEffect(() => {
+        const loadProduct = async () => {
+            try {
+                const product = productData.find(item => item.id === +id);
+                if (!product) throw new Error("Produk tidak ditemukan");
+
+                const [kelurahan = "", kecamatan = "", kota = "", detail = ""] =
+                    product.address?.split(", ") ?? [];
+
+                setFormData({
+                    productName: product.productName ?? "",
+                    description: product.description ?? "",
+                    stock: product.stok ?? 0,
+                    price: product.price?.toString() ?? "",
+                    images: [product.image_url, ...Array(4).fill(null)],
+                    category: product.category ?? "",
+                    location: { kota, kecamatan, kelurahan, detail },
+                    pickup: {
+                        date: product.date ?? "",
+                        time: product.timeOver ?? ""
+                    }
+                });
+            } catch (err) {
+                setErrorMessage(err.message);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadProduct();
     }, [id]);
 
-    // Location data handling
-    const kecamatanData = selectedKota ? kotaData[selectedKota] : {};
-    const kelurahanData = selectedKecamatan ? kecamatanData[selectedKecamatan] : [];
+    // 5. Event Handlers
+    const updateField = (field, value) => {
+        setFormData(prev => ({
+            ...prev,
+            [field]: value
+        }));
+    };
 
-    const handleFileChange = (e, index) => {
-        const file = e.target.files[0];
-        if (file) {
-            if (file.size > 5000000) { // 5MB limit
-                alert("Ukuran file terlalu besar. Maksimal 5MB");
-                return;
-            }
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const newImages = [...images];
-                newImages[index] = reader.result;
-                setImages(newImages);
-            };
-            reader.readAsDataURL(file);
+    const handleFileChange = (index, file) => {
+        if (!file || file.size > 5_000_000) {
+            alert("Ukuran file terlalu besar. Maksimal 5MB");
+            return;
         }
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const newImages = [...formData.images];
+            newImages[index] = reader.result;
+            updateField('images', newImages);
+        };
+        reader.readAsDataURL(file);
     };
 
-    const handleDeleteImage = (index) => {
-        const newImages = [...images];
-        newImages[index] = null;
-        setImages(newImages);
-    };
-
-    const handleDateChange = (e) => {
-        const selectedDate = e.target.value;
+    const handleDateChange = (date) => {
         const today = new Date().toISOString().split('T')[0];
-
-        if (selectedDate < today) {
+        if (date < today) {
             alert("Tanggal tidak boleh kurang dari hari ini");
             return;
         }
-        setDate(selectedDate);
+        updateField('pickup', { ...formData.pickup, date });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validation
-        if (!productName || !productDescription || !price || !selectedCategory || !pickupLocation || !date || !time) {
+        const requiredFields = ['productName', 'description', 'price', 'category'];
+        const missingFields = requiredFields.some(field => !formData[field]);
+
+        if (missingFields || !formData.location.detail || !formData.pickup.date || !formData.pickup.time) {
             alert("Mohon lengkapi semua data yang diperlukan.");
             return;
         }
 
         try {
-            const fullAddress = [selectedKelurahan, selectedKecamatan, selectedKota, pickupLocation]
-                .filter(Boolean)
-                .join(", ");
-
+            const fullAddress = Object.values(formData.location).filter(Boolean).join(", ");
             const updatedProduct = {
-                id: parseInt(id),
-                productName,
-                description: productDescription,
-                stok: parseInt(stock),
-                price: parseInt(price),
-                image_url: images[0],
-                category: selectedCategory,
+                id: +id,
+                ...formData,
+                stok: +formData.stock,
+                price: +formData.price,
+                image_url: formData.images[0],
                 address: fullAddress,
-                date,
-                timeOver: time,
+                date: formData.pickup.date,
+                timeOver: formData.pickup.time,
                 updated_at: new Date().toISOString()
             };
 
-            // Here you would typically make an API call
             console.log('Updating product:', updatedProduct);
-
-            // Show success message and navigate
             alert("Produk berhasil diperbarui!");
             navigate("/share-meals");
-        } catch (error) {
-            console.error('Error updating product:', error);
+        } catch (err) {
+            console.error('Error updating product:', err);
             alert("Gagal memperbarui produk. Silakan coba lagi.");
         }
     };
 
-    if (isLoading) {
-        return <div className="flex justify-center items-center min-h-screen">
-            <p>Loading...</p>
-        </div>;
-    }
-
-    if (errorMessage) {
-        return <div className="flex justify-center items-center min-h-screen">
-            <p className="text-red-500">{errorMessage}</p>
-        </div>;
-    }
-
+    // 6. Render Logic
+    if (isLoading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+    if (errorMessage) return <div className="flex justify-center items-center min-h-screen text-red-500">{errorMessage}</div>;
+    
     return (
         <div className="flex min-h-screen">
             <Sidebar />
@@ -192,10 +189,10 @@ const UpdateShareMeals = () => {
                                         <input
                                             className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2 w-full"
                                             type="text"
-                                            value={productName}
+                                            value={formData.productName}
                                             onChange={(e) => {
                                                 if (e.target.value.length <= 23) {
-                                                    setProductName(e.target.value);
+                                                    updateField('productName', e.target.value);
                                                 }
                                             }}
                                             maxLength={23}
@@ -203,7 +200,7 @@ const UpdateShareMeals = () => {
                                             required
                                         />
                                         <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-500">
-                                            {productName.length}/23
+                                            {formData.productName.length}/23
                                         </span>
                                     </div>
                                 </div>
@@ -215,10 +212,10 @@ const UpdateShareMeals = () => {
                                         placeholder="Deskripsi produk"
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
                                         rows="5"
-                                        value={productDescription}
-                                        onChange={(e) => setProductDescription(e.target.value)}
+                                        value={formData.description}
+                                        onChange={(e) => updateField('description', e.target.value)}
                                         required
-                                    ></textarea>
+                                    />
                                 </div>
 
                                 {/* Harga Produk */}
@@ -227,8 +224,8 @@ const UpdateShareMeals = () => {
                                     <input
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
                                         type="number"
-                                        value={price}
-                                        onChange={(e) => setPrice(e.target.value)}
+                                        value={formData.price}
+                                        onChange={(e) => updateField('price', e.target.value)}
                                         placeholder="Masukkan harga produk"
                                         required
                                     />
@@ -238,32 +235,23 @@ const UpdateShareMeals = () => {
                                 <div className="flex flex-col mt-4">
                                     <label>Foto Produk</label>
                                     <div className="flex gap-4 mt-2">
-                                        {images.map((image, index) => (
-                                            <div
-                                                key={index}
-                                                className="relative w-24 h-24 border rounded-md flex items-center justify-center"
-                                            >
+                                        {formData.images.map((image, index) => (
+                                            <div key={index} className="relative w-24 h-24 border rounded-md flex items-center justify-center">
                                                 {image ? (
                                                     <>
-                                                        <img
-                                                            src={image}
-                                                            alt={`Foto ${index + 1}`}
-                                                            className="w-full h-full object-cover rounded-md"
-                                                        />
+                                                        <img src={image} alt={`Foto ${index + 1}`} className="w-full h-full object-cover rounded-md" />
                                                         <button
                                                             className="absolute top-1 right-1 bg-[#45c517] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
-                                                            onClick={() => handleDeleteImage(index)}
+                                                            onClick={() => handleFileChange(index, null)}
                                                             type="button"
-                                                        >
-                                                            ×
-                                                        </button>
+                                                        >×</button>
                                                     </>
                                                 ) : (
                                                     <label className="flex flex-col items-center justify-center cursor-pointer text-gray-500 bg-gray-100 w-full h-full rounded-md">
                                                         <input
                                                             type="file"
                                                             accept="image/*"
-                                                            onChange={(e) => handleFileChange(e, index)}
+                                                            onChange={(e) => handleFileChange(index, e.target.files[0])}
                                                             className="hidden"
                                                         />
                                                         <span className="text-xs">Tambah Foto {index + 1}</span>
@@ -276,128 +264,117 @@ const UpdateShareMeals = () => {
 
                                 {/* Kategori Produk */}
                                 <div className="flex flex-col">
-                                    <label>Kategori Produk</label>
+                                    <label htmlFor="category">Kategori Produk</label>
                                     <select
+                                        id="category"
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-                                        value={selectedCategory}
-                                        onChange={(e) => setSelectedCategory(e.target.value)}
+                                        value={formData.category || ''}
+                                        onChange={(e) => updateField('category', e.target.value)}
                                         required
                                     >
                                         <option value="">Pilih Kategori</option>
-                                        {categoriesData.map((category) => (
-                                            <option key={category.id} value={category.name}>
-                                                {category.name}
-                                            </option>
-                                        ))}
+                                        {isLoading ? (
+                                            <option>Loading...</option>
+                                        ) : error ? (
+                                            <option>Error: {error}</option>
+                                        ) : (
+                                            categoriesData.map((category) => (
+                                                <option
+                                                    key={category?.id}
+                                                    value={category?.name}
+                                                >
+                                                    {category?.name}
+                                                </option>
+                                            ))
+                                        )}
                                     </select>
                                 </div>
 
-                                {/* Kota */}
+                                {/* Location Fields */}
                                 <div className="flex flex-col">
                                     <label>Pilih Kota</label>
                                     <select
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-                                        value={selectedKota}
-                                        onChange={(e) => {
-                                            setSelectedKota(e.target.value);
-                                            setSelectedKecamatan("");
-                                            setSelectedKelurahan("");
-                                        }}
+                                        value={formData.location.kota}
+                                        onChange={(e) => updateField('location', { ...formData.location, kota: e.target.value, kecamatan: '', kelurahan: '' })}
                                         required
                                     >
                                         <option value="">Pilih Kota</option>
-                                        {Object.keys(kotaData).map((kota) => (
-                                            <option key={kota} value={kota}>
-                                                {kota}
-                                            </option>
+                                        {Object.keys(kotaData).map(kota => (
+                                            <option key={kota} value={kota}>{kota}</option>
                                         ))}
                                     </select>
                                 </div>
 
-                                {/* Kecamatan */}
                                 <div className="flex flex-col">
                                     <label>Pilih Kecamatan</label>
                                     <select
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-                                        value={selectedKecamatan}
-                                        onChange={(e) => {
-                                            setSelectedKecamatan(e.target.value);
-                                            setSelectedKelurahan("");
-                                        }}
-                                        disabled={!selectedKota}
+                                        value={formData.location.kecamatan}
+                                        onChange={(e) => updateField('location', { ...formData.location, kecamatan: e.target.value, kelurahan: '' })}
+                                        disabled={!formData.location.kota}
                                         required
                                     >
                                         <option value="">Pilih Kecamatan</option>
-                                        {selectedKota && Object.keys(kecamatanData).map((kecamatan) => (
-                                            <option key={kecamatan} value={kecamatan}>
-                                                {kecamatan}
-                                            </option>
+                                        {Object.keys(kecamatanData).map(kecamatan => (
+                                            <option key={kecamatan} value={kecamatan}>{kecamatan}</option>
                                         ))}
                                     </select>
                                 </div>
 
-                                {/* Kelurahan */}
                                 <div className="flex flex-col">
                                     <label>Pilih Kelurahan</label>
                                     <select
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
-                                        value={selectedKelurahan}
-                                        onChange={(e) => setSelectedKelurahan(e.target.value)}
-                                        disabled={!selectedKecamatan}
+                                        value={formData.location.kelurahan}
+                                        onChange={(e) => updateField('location', { ...formData.location, kelurahan: e.target.value })}
+                                        disabled={!formData.location.kecamatan}
                                         required
                                     >
                                         <option value="">Pilih Kelurahan</option>
-                                        {selectedKecamatan && kelurahanData.map((kelurahan, index) => (
-                                            <option key={index} value={kelurahan}>
-                                                {kelurahan}
-                                            </option>
+                                        {kelurahanData.map((kelurahan, index) => (
+                                            <option key={index} value={kelurahan}>{kelurahan}</option>
                                         ))}
                                     </select>
                                 </div>
 
-                                {/* Alamat Lengkap */}
                                 <div className="flex flex-col">
                                     <label>Alamat Lengkap</label>
                                     <input
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
                                         type="text"
-                                        value={pickupLocation}
-                                        onChange={(e) => setPickupLocation(e.target.value)}
+                                        value={formData.location.detail}
+                                        onChange={(e) => updateField('location', { ...formData.location, detail: e.target.value })}
                                         placeholder="Alamat Lengkap"
                                         required
                                     />
                                 </div>
 
-                                {/* Tanggal Pengambilan */}
+                                {/* Pickup Fields */}
                                 <div className="flex flex-col">
                                     <label>Tanggal Pengambilan</label>
                                     <input
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
                                         type="date"
-                                        value={date}
-                                        onChange={handleDateChange}
+                                        value={formData.pickup.date}
+                                        onChange={(e) => handleDateChange(e.target.value)}
                                         required
                                     />
                                 </div>
 
-                                {/* Jam Pengambilan */}
                                 <div className="flex flex-col">
                                     <label>Jam Pengambilan</label>
                                     <input
                                         className="rounded-2xl pl-3 border-2 border-green-300 p-1 mt-2"
                                         type="time"
-                                        value={time}
-                                        onChange={(e) => setTime(e.target.value)}
+                                        value={formData.pickup.time}
+                                        onChange={(e) => updateField('pickup', { ...formData.pickup, time: e.target.value })}
                                         required
                                     />
                                 </div>
 
-                                {/* Tombol Submit */}
-                                <button
-                                    className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mb-5"
-                                    type="submit"
-                                >
-                                    Upload
+                                <button className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mb-5" type="submit">
+                                    Update
                                 </button>
                             </form>
                         </section>
