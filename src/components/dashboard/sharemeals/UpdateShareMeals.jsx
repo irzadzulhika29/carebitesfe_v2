@@ -113,6 +113,13 @@ const UpdateShareMeals = () => {
         }));
     };
 
+    // Add this new handler for image deletion
+    const handleImageDelete = (index) => {
+        const newImages = [...formData.images];
+        newImages[index] = null;
+        updateField('images', newImages);
+    };
+
     const handleFileChange = (index, file) => {
         if (!file || file.size > 5_000_000) {
             alert("Ukuran file terlalu besar. Maksimal 5MB");
@@ -246,6 +253,7 @@ const UpdateShareMeals = () => {
                                 <div className="flex flex-col mt-4">
                                     <label>Foto Produk</label>
                                     <div className="flex gap-4 mt-2">
+
                                         {formData.images.map((image, index) => (
                                             <div key={index} className="relative w-24 h-24 border rounded-md flex items-center justify-center">
                                                 {image ? (
@@ -253,7 +261,7 @@ const UpdateShareMeals = () => {
                                                         <img src={image} alt={`Foto ${index + 1}`} className="w-full h-full object-cover rounded-md" />
                                                         <button
                                                             className="absolute top-1 right-1 bg-[#45c517] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
-                                                            onClick={() => handleFileChange(index, null)}
+                                                            onClick={() => handleImageDelete(index)}
                                                             type="button"
                                                         >×</button>
                                                     </>
