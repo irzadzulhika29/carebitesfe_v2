@@ -223,6 +223,7 @@ const CharityCampaignForm = () => {
                                 </div>
 
 
+
                             </div>
                             {/* <div className="flex flex-col">
                                 <label>Foto Campaign</label>
@@ -257,7 +258,7 @@ const CharityCampaignForm = () => {
                             </div> */}
 
                             <div className="flex flex-col gap-3">
-                                <label>Thumbnail Artikel</label>
+                                <label>Thumbnail Campaign</label>
                                 <input
                                     type="file"
                                     accept="image/*"
@@ -299,6 +300,7 @@ const CharityCampaignForm = () => {
                                 Upload
                             </button>
                         </form>
+
                     </div>
 
                 </div>

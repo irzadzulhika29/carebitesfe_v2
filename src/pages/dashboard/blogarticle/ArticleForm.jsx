@@ -82,15 +82,6 @@ const ArticleForm = () => {
                     <div className="mt-5 p-3 rounded-md bg-white mb-5 shadow-md mx-10 flex min-h-screen flex-col gap-5">
                         <h1 className='text-xl text-[#45c517] font-semibold'>Form Artikel</h1>
 
-                        {error && (
-                            <p className="text-red-500 text-sm">{error}</p>
-                        )}
-
-                        {successMessage && (
-                            <div className="text-green-500 text-sm mt-2">
-                                {successMessage}
-                            </div>
-                        )}
 
                         <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
                             <div className="flex flex-col gap-3">
@@ -168,10 +159,21 @@ const ArticleForm = () => {
 
                             <button
                                 type="submit"
-                                className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 mb-5 hover:bg-green-600"
+                                className="py-2 text-white rounded-full w-32 bg-[#47cb18] mt-4 hover:bg-green-600"
                             >
                                 Upload
                             </button>
+
+
+                            {error && (
+                                <p className="text-red-500 text-sm">{error}</p>
+                            )}
+
+                            {successMessage && (
+                                <div className="text-green-500 text-sm mt-2">
+                                    {successMessage}
+                                </div>
+                            )}
                         </form>
                     </div>
                 </div>
